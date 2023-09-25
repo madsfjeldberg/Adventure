@@ -60,20 +60,18 @@ public class UserInterface {
 
     public void run() {
         boolean run = true;
-        String command = input.nextLine().toLowerCase();
 
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("");
-
+        String command = input.nextLine().toLowerCase();
         if (command.equals("exit")) {
             exit();
         } else if (command.equals("help")) {
             help();
         } else if (command.equals("look")) {
             look();
-        } else if (command.equals("move")) {
-            move(command);
-        }
+        } else move(command);
+
 
         //input
     }
