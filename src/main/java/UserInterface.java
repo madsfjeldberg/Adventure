@@ -21,20 +21,31 @@ public class UserInterface {
 
     public void help() {
         // print kommandoer, dørplaceringer, objectives
+        System.out.println("Formålet med spillet er at finde guldet.");
+        System.out.println("Du kan bevæge dig rundt i rummene ved at taste");
+        System.out.println("'e', 'n', 'go south', 'go north', osv.");
+        System.out.println("\nTast 'look' for at kigge rundt i rummet.");
+        System.out.println("Tast 'exit' for at afslutte spillet.");
+
     }
 
     public void look() {
         // kigger rundt i rummet, evt. print description
+        // andre ting senere
+        showInfo();
     }
 
-    public void move() {
+    public void move(String command) {
         // bevæger sig rundt med N S W E eller lign.
         // check om der er et rum i den retning man vil hen
         // hvis der er et rum, sæt currentRoom til nyt rum
-        String choice = input.nextLine();
 
-        if (choice.equalsIgnoreCase("n")) {
-            adventure.getCurrentRoom() = adventure.getCurrentRoom().getNorth();
+        switch (command) {
+            case "n" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
+            case "s" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
+            case "w" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getWest());
+            case "e" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getEast());
+            default -> System.out.println("Invalid input. Try again.");
         }
 
     }
