@@ -13,7 +13,10 @@ public class UserInterface {
 
     // TODO: kommandoer:
     public void exit() {
-        // afslut spillet
+        if(input.equals("exit")) {
+            System.out.println("Goodbye");
+            System.exit(0);
+        }
     }
 
     public void help() {
@@ -46,9 +49,20 @@ public class UserInterface {
 
     public void run() {
         boolean run = true;
+        String command = input.nextLine().toLowerCase();
 
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("");
+
+        if (command.equals("exit")) {
+            exit();
+        } else if (command.equals("help")) {
+            help();
+        } else if (command.equals("look")) {
+            look();
+        } else if (command.equals("move")) {
+            move(command);
+        }
 
         //input
     }
