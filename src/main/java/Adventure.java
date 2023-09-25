@@ -1,10 +1,10 @@
 public class Adventure {
 
    private Room currentRoom;
-   private UserInterface ui;
+
 
    public Adventure() {
-       Room room1 = new Room("Room 1", "room with no distinct features, except two doors");
+       Room room1 = new Room("Room 1", "Room with no distinct features, except two doors.");
        Room room2 = new Room("Room 2", "");
        Room room3 = new Room("Room 3", "");
        Room room4 = new Room("Room 4", "");
@@ -36,6 +36,9 @@ public class Adventure {
        currentRoom = room1;
    }
 
+   public String getDescription() {
+       return currentRoom.getDescription();
 
+   }
 
 }
