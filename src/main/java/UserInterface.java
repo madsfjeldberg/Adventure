@@ -40,6 +40,13 @@ public class UserInterface {
         // check om der er et rum i den retning man vil hen
         // hvis der er et rum, sæt currentRoom til nyt rum
 
+        // TODO: skriv kode til at omforme f.eks. 'go north' til 'n'
+        // og 'go south' til 's'
+
+        // TODO: sørg for program ikke crasher hvis du vælger at move til rum med null værdi
+
+        // TODO: når man kommer til nyt rum, print description
+
         switch (command) {
             case "n" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
             case "s" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
@@ -64,15 +71,16 @@ public class UserInterface {
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("");
         String command = input.nextLine().toLowerCase();
-        if (command.equals("exit")) {
-            exit();
-        } else if (command.equals("help")) {
-            help();
-        } else if (command.equals("look")) {
-            look();
-        } else move(command);
+        while (run) {
+            if (command.equals("exit")) {
+                exit();
+            } else if (command.equals("help")) {
+                help();
+            } else if (command.equals("look")) {
+                look();
+            } else move(command);
 
-
-        //input
+            command = input.nextLine().toLowerCase();
+        }
     }
 }

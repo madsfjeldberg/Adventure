@@ -5,14 +5,14 @@ public class Adventure {
 
    public Adventure() {
        Room room1 = new Room("Room 1", "Room with no distinct features, except two doors.");
-       Room room2 = new Room("Room 2", "");
-       Room room3 = new Room("Room 3", "");
-       Room room4 = new Room("Room 4", "");
+       Room room2 = new Room("Room 2", "no desc yet");
+       Room room3 = new Room("Room 3", "no desc yet");
+       Room room4 = new Room("Room 4", "no desc yet");
        Room room5 = new Room("Room 5", "Room full of treasures"); // win condition
-       Room room6 = new Room("Room 6", "");
-       Room room7 = new Room("Room 7", "");
-       Room room8 = new Room("Room 8", "");
-       Room room9 = new Room("Room 9", "");
+       Room room6 = new Room("Room 6", "no desc yet");
+       Room room7 = new Room("Room 7", "no desc yet");
+       Room room8 = new Room("Room 8", "no desc yet");
+       Room room9 = new Room("Room 9", "no desc yet");
 
        room1.setEast(room2);
        room1.setSouth(room4);
