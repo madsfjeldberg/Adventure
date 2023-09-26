@@ -27,7 +27,7 @@ public class UserInterface {
     // look around the room etc. print the description.
     // more things to come
     public void look() {
-        showInfo();
+        System.out.println(adventure.longDescription());
     }
 
     // Move around using N S W E or etc.
@@ -102,9 +102,9 @@ public class UserInterface {
     public void showInfo() {
         if (!adventure.getCurrentRoom().getVisited()) {
             adventure.getCurrentRoom().setVisited(true);
-            System.out.println(adventure.longDescription());
+            System.out.println(adventure.getName() + adventure.longDescription());
         } else {
-            System.out.println(adventure.shortDescription());
+            System.out.println(adventure.getName() + adventure.shortDescription());
         }
     }
 
@@ -112,7 +112,12 @@ public class UserInterface {
     public void run() {
         boolean run = true;
 
-        System.out.println("Welcome to the Adventure Game!\n");
+        System.out.println("""
+                ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
+                |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
+                |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
+
+        System.out.println();
         help();
         String command = input.nextLine().toLowerCase();
         while (run) {
