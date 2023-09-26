@@ -1,6 +1,8 @@
 public class Room {
-    private String name;
-    private String description;
+    private final String name;
+    private final String longDescription;
+    private final String shortDescription;
+    private boolean isVisited;
     private Room north = null;
     private Room east = null;
     private Room south = null;

@@ -1,7 +1,7 @@
 public class Adventure {
 
    private Room currentRoom;
-
+   private Room xyzzyRoom;
 
    public Adventure() {
        Room room1 = new Room("Room 1", "Room with no distinct features, except two doors.");
@@ -34,13 +34,24 @@ public class Adventure {
        room9.setWest(room8);
 
        currentRoom = room1;
+       xyzzyRoom = room1;
    }
 
-   public String getDescription() {
-       return currentRoom.getDescription();
 
+   public String longDescription() {
+       return currentRoom.getLongDescription();
+   }
+   public String shortDescription() {
+       return currentRoom.getShortDescription();
    }
 
+   public Room getXyzzyRoom() {
+       return xyzzyRoom;
+   }
+
+   public void setXyzzyRoom(Room currentRoom) {
+       this.xyzzyRoom = currentRoom;
+   }
    public Room getCurrentRoom() {
        return currentRoom;
    }

@@ -2,69 +2,115 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private Adventure adventure;
+    private final Adventure adventure;
     Scanner input;
 
     public UserInterface() {
         adventure = new Adventure();
         input = new Scanner(System.in);
-
     }
 
-    // TODO: kommandoer:
     public void exit() {
-        if(input.equals("exit")) {
-            System.out.println("Goodbye");
-            System.exit(0);
-        }
+        System.exit(0);
     }
 
     public void help() {
-        // print kommandoer, dørplaceringer, objectives
-        System.out.println("Formålet med spillet er at finde guldet.");
-        System.out.println("Du kan bevæge dig rundt i rummene ved at taste");
-        System.out.println("'e', 'n', 'go south', 'go north', osv.");
-        System.out.println("\nTast 'look' for at kigge rundt i rummet.");
-        System.out.println("Tast 'exit' for at afslutte spillet.");
+        // print commands
+        System.out.println("The purpose of the game is to find the treasure.");
+        System.out.println("You can move around the rooms by typing");
+        System.out.println("'e', 'n', 'go south', 'go north', etc.");
+        System.out.println("Type 'look' to look around the room.");
+        System.out.println("Type 'exit' to end the game.");
 
     }
 
+    // look around the room etc. print the description.
+    // more things to come
     public void look() {
         // kigger rundt i rummet, evt. print description
         // andre ting senere
         showInfo();
     }
 
+    // Move around using N S W E or etc.
+    // check if there is a room in that direction.
+    // if there is a room set currentRoom to new room.
     public void move(String command) {
-        // bevæger sig rundt med N S W E eller lign.
-        // check om der er et rum i den retning man vil hen
-        // hvis der er et rum, sæt currentRoom til nyt rum
 
-        // TODO: skriv kode til at omforme f.eks. 'go north' til 'n'
-        // og 'go south' til 's'
-
-        // TODO: sørg for program ikke crasher hvis du vælger at move til rum med null værdi
-
-        // TODO: når man kommer til nyt rum, print description
-
-        switch (command) {
-            case "n" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
-            case "s" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
-            case "w" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getWest());
-            case "e" -> adventure.setCurrentRoom(adventure.getCurrentRoom().getEast());
-            default -> System.out.println("Invalid input. Try again.");
+        switch (command){
+            case "go north" -> command = "n";
+            case "go south" -> command = "s";
+            case "go west" -> command = "w";
+            case "go east" -> command = "e";
+            case "east" -> command = "e";
+            case "west" -> command = "w";
+            case "south" -> command = "s";
+            case "north" -> command = "n";
         }
 
+        switch (command) {
+            case "n":
+                if (adventure.getCurrentRoom().getNorth() == null)
+                    System.out.println("There is no room here.");
+                else {
+                    adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
+                    showInfo(); }
+                break;
+            case "s":
+                if (adventure.getCurrentRoom().getSouth() == null)
+                    System.out.println("There is no room here.");
+                else {
+                    adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
+                    showInfo(); }
+                break;
+            case "w":
+                if (adventure.getCurrentRoom().getWest() == null)
+                    System.out.println("There is no room here.");
+                else {
+                    adventure.setCurrentRoom(adventure.getCurrentRoom().getWest());
+                    showInfo(); }
+                break;
+            case "e":
+                if (adventure.getCurrentRoom().getEast() == null)
+                    System.out.println("There is no room here.");
+                else {
+                    adventure.setCurrentRoom(adventure.getCurrentRoom().getEast());
+                    showInfo(); }
+                break;
+            default: System.out.println("Invalid input. Try again.");
+        }
     }
 
+    // teleport method
+    public void xyzzy() {
+        Room tempRoom = adventure.getCurrentRoom();
+        adventure.setCurrentRoom(adventure.getXyzzyRoom());
+        adventure.setXyzzyRoom(tempRoom);
 
+        System.out.println("XYZZY!");
+        System.out.println("\033[3mYou are magically teleported to a new room.\033[0m");
+    }
+
+    // check to see if you won
+    public void wincheck() {
+        if (adventure.getCurrentRoom().getName().equals("Room 5")) {
+            System.out.println("You win!");
+            exit();
+        }
+    }
+
+    // shows info about the current room
+    // prints short and long descriptions, depending on the current room visited status.
     public void showInfo() {
-        System.out.println(adventure.getDescription());
-
+        if (!adventure.getCurrentRoom().getVisited()) {
+            adventure.getCurrentRoom().setVisited(true);
+            System.out.println(adventure.longDescription());
+        } else {
+            System.out.println(adventure.shortDescription());
+        }
     }
 
-
-
+    // runs the game
     public void run() {
         boolean run = true;
 
@@ -72,14 +118,20 @@ public class UserInterface {
         System.out.println("");
         String command = input.nextLine().toLowerCase();
         while (run) {
-            if (command.equals("exit")) {
-                exit();
-            } else if (command.equals("help")) {
-                help();
-            } else if (command.equals("look")) {
-                look();
-            } else move(command);
+            switch (command) {
+                case "exit" -> {
+                    exit();
+                    run = false;
+                }
+                case "help" -> help();
+                case "look" -> look();
+                case "xyzzy" -> xyzzy();
+                default -> move(command);
+            }
 
+            wincheck();
+
+            System.out.println("What do you do?");
             command = input.nextLine().toLowerCase();
         }
     }
