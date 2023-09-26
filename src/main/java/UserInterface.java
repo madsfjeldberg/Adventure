@@ -27,8 +27,6 @@ public class UserInterface {
     // look around the room etc. print the description.
     // more things to come
     public void look() {
-        // kigger rundt i rummet, evt. print description
-        // andre ting senere
         showInfo();
     }
 
@@ -114,8 +112,8 @@ public class UserInterface {
     public void run() {
         boolean run = true;
 
-        System.out.println("Welcome to the Adventure Game!");
-        System.out.println("");
+        System.out.println("Welcome to the Adventure Game!\n");
+        help();
         String command = input.nextLine().toLowerCase();
         while (run) {
             switch (command) {

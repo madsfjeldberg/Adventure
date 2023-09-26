@@ -4,16 +4,19 @@ public class Adventure {
    private Room xyzzyRoom;
 
    public Adventure() {
-       Room room1 = new Room("Room 1", "Room with no distinct features, except two doors.");
-       Room room2 = new Room("Room 2", "no desc yet");
-       Room room3 = new Room("Room 3", "no desc yet");
-       Room room4 = new Room("Room 4", "no desc yet");
-       Room room5 = new Room("Room 5", "Room full of treasures"); // win condition
-       Room room6 = new Room("Room 6", "no desc yet");
-       Room room7 = new Room("Room 7", "no desc yet");
-       Room room8 = new Room("Room 8", "no desc yet");
-       Room room9 = new Room("Room 9", "no desc yet");
+       // Room name and theirs description
 
+       Room room1 = new Room("The Crimson Chamber:\n", "Room with no distinct features, except one door.", "No features but one door");
+       Room room2 = new Room("The Rustic Retreat:\n", "The room is dimly lit, with cold stone walls that seem to close in on you.", "dimly lit, stone wall");
+       Room room3 = new Room("The Prison:\n", "In one corner, there's a rough-hewn wooden table with shackles attached to its legs, suggesting a place of restraint or torture.", "The old prison");
+       Room room4 = new Room("The Enchanted Library:\n", "Well-stocked bookshelf's holds volumes of ancient tomes and dusty scrolls, fostering a scholarly ambiance.", " its a libreary filled with dusty scrolls");
+       Room room5 = new Room("the Treasury:\n", "Room full of treasures", "room full of gold"); // win condition
+       Room room6 = new Room("The Hidden Alcove:\n", "The floor is uneven, with patches of moss and dampness, and there's a faint sound of dripping water in the distance.", "Room filled with moss and dripping water");
+       Room room7 = new Room("The Mystical Sanctum:\n", "This room exudes an unsettling aura, and its origins and purpose remain shrouded in mystery.", "The room full of mystery");
+       Room room8 = new Room("The Grand Hall:\n", "A massive, intricately carved wooden table stands at the room's center, its adorned with candles in ornate holders, creating a sense of enchantment.", " Wooden table filled with candles");
+       Room room9 = new Room("The Starlit Observatory:\n", "Shadows dance along the walls, creating eerie shapes that seem to move on their own.", "The moving shadows");
+
+       //all rooms are connected
        room1.setEast(room2);
        room1.setSouth(room4);
        room2.setWest(room1);

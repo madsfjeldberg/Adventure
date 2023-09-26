@@ -8,18 +8,15 @@ public class Room {
     private Room south = null;
     private Room west = null;
 
-
-    public Room(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Room(String name, String longDescription, String shortDescription) {
+     this.name = name;
+    this.longDescription = longDescription;
+    this.shortDescription = shortDescription;
+    this.isVisited = false;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public Room getNorth() {
@@ -40,6 +37,22 @@ public class Room {
 
     public void setNorth(Room north) {
         this.north = north;
+    }
+
+    public boolean getVisited() {
+        return isVisited;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setVisited(boolean bool) {
+        this.isVisited = bool;
     }
 
     public void setEast(Room east) {
