@@ -2,11 +2,10 @@
 
 public class Adventure {
 
-    private final Map map;
     private final Player player;
 
     public Adventure() {
-        map = new Map();
+        Map map = new Map();
         player = new Player(map.getCurrentRoom());
     }
 
@@ -14,33 +13,25 @@ public class Adventure {
         System.exit(0);
     }
 
-    // referer til player igennem ui
     public void move(String command) {
         player.move(command);
     }
 
-    /*
-    // referer til player igennem ui
+
+    // tp metode
     public void xyzzy() {
         player.xyzzy();
     }
-    */
 
+    // viser hjælpetektst
     public void help() {
-        // print commands
-        System.out.println("The purpose of the game is to find the treasure.");
-        System.out.println("You can move around the rooms by typing");
-        System.out.println("'e', 'n', 'go south', 'go north', etc.");
-        System.out.println("Type 'look' to look around the room.");
-        System.out.println("Type 'exit' to end the game.");
+        player.help();
     }
 
-    // look around the room etc. print the description.
-    // more things to come
+    // viser beskrivelse af rummet
     public void look() {
         player.look();
     }
-
 
     // check to see if you won
     public void wincheck() {

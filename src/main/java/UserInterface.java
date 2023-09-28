@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+// TODO: omskriv UI til at indeholde al sout
+// TODO: kun logic i backend pls
+
 public class UserInterface {
 
     private final Adventure adventure;
@@ -35,7 +38,7 @@ public class UserInterface {
                 }
                 case "help" -> adventure.help();
                 case "look" -> adventure.look();
-                // case "xyzzy" -> adventure.xyzzy();
+                case "xyzzy" -> adventure.xyzzy();
                 default -> adventure.move(command);
             }
 
