@@ -3,8 +3,6 @@
 public class Map {
 
     private Room currentRoom;
-    private Room xyzzyRoom;
-    private final Room starterRoom;
 
     public Map() {
         Room room1 = new Room("The Crimson Chamber:\n", "A featureless room with a single door.", "Featureless with one door.");
@@ -37,35 +35,13 @@ public class Map {
         room9.setNorth(room6);
         room9.setWest(room8);
 
-        starterRoom = room1;
         currentRoom = room1;
-        xyzzyRoom = room1;
     }
 
     // TODO: buildMap funktion
 
-    public Room getXyzzyRoom() {
-        return xyzzyRoom;
-    }
-
-    public Room getStarterRoom() {
-        return starterRoom;
-    }
-
-    public void setXyzzyRoom(Room currentRoom) {
-        this.xyzzyRoom = currentRoom;
-    }
     public Room getCurrentRoom() {
         return currentRoom;
     }
-
-    public String getName() {
-        return currentRoom.getName();
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
-
 
 }
