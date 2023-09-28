@@ -2,16 +2,12 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private Adventure adventure;
-    Scanner input;
-    private final Map map;
-    private Player player;
+    private final Adventure adventure;
+    private final Scanner input;
 
     public UserInterface() {
         adventure = new Adventure();
         input = new Scanner(System.in);
-        map = new Map();
-        player = new Player();
     }
 
     public void welcomeMessage() {
@@ -39,7 +35,7 @@ public class UserInterface {
                 }
                 case "help" -> adventure.help();
                 case "look" -> adventure.look();
-                case "xyzzy" -> adventure.xyzzy();
+                // case "xyzzy" -> adventure.xyzzy();
                 default -> adventure.move(command);
             }
 

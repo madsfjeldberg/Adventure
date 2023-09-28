@@ -44,13 +44,6 @@ public class Map {
 
     // TODO: buildMap funktion
 
-    public String longDescription() {
-        return currentRoom.getLongDescription();
-    }
-    public String shortDescription() {
-        return currentRoom.getShortDescription();
-    }
-
     public Room getXyzzyRoom() {
         return xyzzyRoom;
     }

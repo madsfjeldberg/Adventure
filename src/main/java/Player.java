@@ -2,15 +2,9 @@ public class Player {
 
     private Room currentRoom;
     private Room xyzzyRoom;
-    private final Map map;
 
-    public Player() {
-        map = new Map();
-        xyzzyRoom = map.getXyzzyRoom();
-        currentRoom = map.getStarterRoom();
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
+    public Player(Room currentRoom) {
+        // xyzzyRoom = map.getXyzzyRoom();
         this.currentRoom = currentRoom;
     }
 
@@ -18,20 +12,34 @@ public class Player {
         this.xyzzyRoom = xyzzyRoom;
     }
 
+    /*
     public void xyzzy() {
-        Room tempRoom = map.getCurrentRoom();
+        Room tempRoom = currentRoom;
         map.setCurrentRoom(map.getXyzzyRoom());
         map.setXyzzyRoom(tempRoom);
 
         System.out.println("XYZZY!");
         System.out.println("\033[3mYou are magically teleported to a new room.\033[0m");
     }
-    public void showInfo() {
-        if (!map.getCurrentRoom().getVisited()) {
-            map.getCurrentRoom().setVisited(true);
-            System.out.println(map.getName() + map.longDescription());
+    */
+
+    public void look() {
+        System.out.println(currentRoom.longdesc());
+    }
+
+    public void showDescription() {
+        if (!currentRoom.getVisited()) {
+            currentRoom.setVisited();
+            System.out.println(currentRoom.longdesc());
         } else {
-            System.out.println(map.getName() + map.shortDescription());
+            System.out.println(currentRoom.shortdesc());
+        }
+    }
+
+    public void wincheck() {
+        if (currentRoom.getName().equals("The Treasury")) {
+            System.out.println("You win!");
+            System.exit(0);
         }
     }
 
@@ -50,32 +58,32 @@ public class Player {
 
         switch (command) {
             case "n":
-                if (map.getCurrentRoom().getNorth() == null)
+                if (currentRoom.getNorth() == null)
                     System.out.println("There is no room here.");
                 else {
-                    map.setCurrentRoom(map.getCurrentRoom().getNorth());
-                    showInfo(); }
+                    currentRoom = currentRoom.getNorth();
+                    showDescription(); }
                 break;
             case "s":
-                if (map.getCurrentRoom().getSouth() == null)
+                if (currentRoom.getSouth() == null)
                     System.out.println("There is no room here.");
                 else {
-                    map.setCurrentRoom(map.getCurrentRoom().getSouth());
-                    showInfo(); }
+                    currentRoom = currentRoom.getSouth();
+                    showDescription(); }
                 break;
             case "w":
-                if (map.getCurrentRoom().getWest() == null)
+                if (currentRoom.getWest() == null)
                     System.out.println("There is no room here.");
                 else {
-                    map.setCurrentRoom(map.getCurrentRoom().getWest());
-                    showInfo(); }
+                    currentRoom = currentRoom.getWest();
+                    showDescription(); }
                 break;
             case "e":
-                if (map.getCurrentRoom().getEast() == null)
+                if (currentRoom.getEast() == null)
                     System.out.println("There is no room here.");
                 else {
-                    map.setCurrentRoom(map.getCurrentRoom().getEast());
-                    showInfo(); }
+                    currentRoom = currentRoom.getEast();
+                    showDescription(); }
                 break;
             default: System.out.println("Invalid input. Try again.");
         }

@@ -9,10 +9,10 @@ public class Room {
     private Room west = null;
 
     public Room(String name, String longDescription, String shortDescription) {
-     this.name = name;
-    this.longDescription = longDescription;
-    this.shortDescription = shortDescription;
-    this.isVisited = false;
+        this.name = name;
+        this.longDescription = longDescription;
+        this.shortDescription = shortDescription;
+        this.isVisited = false;
     }
 
     public String getName() {
@@ -51,8 +51,8 @@ public class Room {
         return shortDescription;
     }
 
-    public void setVisited(boolean bool) {
-        this.isVisited = bool;
+    public void setVisited() {
+        this.isVisited = true;
     }
 
     public void setEast(Room east) {
@@ -65,5 +65,13 @@ public class Room {
 
     public void setWest(Room west) {
         this.west = west;
+    }
+
+    public String shortdesc() {
+        return name + shortDescription;
+    }
+
+    public String longdesc() {
+        return name + longDescription;
     }
 }
