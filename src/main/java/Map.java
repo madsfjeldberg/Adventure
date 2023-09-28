@@ -5,7 +5,7 @@ public class Map {
     private Room currentRoom;
 
     public Map() {
-        Room room1 = new Room("The Crimson Chamber:\n", "A featureless room with a single door.", "Featureless with one door.");
+        Room room1 = new Room("The Crimson Chamber:\n", "A featureless room with two doors.", "Featureless with one door.");
         Room room2 = new Room("The Rustic Retreat:\n", "Dimly lit with cold, enclosing stone walls.", "Dimly lit and stone-walled.");
         Room room3 = new Room("The Prison:\n", "A corner holds a rough-hewn wooden table with shackles, evoking a place of confinement.", "Corner with a wooden table.");
         Room room4 = new Room("The Enchanted Library:\n", "Well-stocked bookshelves house ancient tomes and dusty scrolls, creating a scholarly atmosphere.", "Library with dusty scrolls.");
