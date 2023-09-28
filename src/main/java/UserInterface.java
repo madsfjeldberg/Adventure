@@ -4,16 +4,20 @@ public class UserInterface {
 
     private final Adventure adventure;
     Scanner input;
+    private final Map map;
 
     public UserInterface() {
         adventure = new Adventure();
         input = new Scanner(System.in);
+        map = new Map();
     }
 
+    // TODO: bør lægge i adventure klassen
     public void exit() {
         System.exit(0);
     }
 
+    // TODO: læg i adventure klassen
     public void help() {
         // print commands
         System.out.println("The purpose of the game is to find the treasure.");
@@ -24,10 +28,11 @@ public class UserInterface {
 
     }
 
+    // TODO: læg i adventure klassen
     // look around the room etc. print the description.
     // more things to come
     public void look() {
-        System.out.println(adventure.longDescription());
+        System.out.println(map.longDescription());
     }
 
     // Move around using N S W E or etc.
@@ -48,65 +53,76 @@ public class UserInterface {
 
         switch (command) {
             case "n":
-                if (adventure.getCurrentRoom().getNorth() == null)
+                if (map.getCurrentRoom().getNorth() == null)
                     System.out.println("There is no room here.");
                 else {
-                    adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
+                    map.setCurrentRoom(map.getCurrentRoom().getNorth());
                     showInfo(); }
                 break;
             case "s":
-                if (adventure.getCurrentRoom().getSouth() == null)
+                if (map.getCurrentRoom().getSouth() == null)
                     System.out.println("There is no room here.");
                 else {
-                    adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
+                    map.setCurrentRoom(map.getCurrentRoom().getSouth());
                     showInfo(); }
                 break;
             case "w":
-                if (adventure.getCurrentRoom().getWest() == null)
+                if (map.getCurrentRoom().getWest() == null)
                     System.out.println("There is no room here.");
                 else {
-                    adventure.setCurrentRoom(adventure.getCurrentRoom().getWest());
+                    map.setCurrentRoom(map.getCurrentRoom().getWest());
                     showInfo(); }
                 break;
             case "e":
-                if (adventure.getCurrentRoom().getEast() == null)
+                if (map.getCurrentRoom().getEast() == null)
                     System.out.println("There is no room here.");
                 else {
-                    adventure.setCurrentRoom(adventure.getCurrentRoom().getEast());
+                    map.setCurrentRoom(map.getCurrentRoom().getEast());
                     showInfo(); }
                 break;
             default: System.out.println("Invalid input. Try again.");
         }
     }
 
+    // TODO: læg i adventure klassen
     // teleport method
     public void xyzzy() {
-        Room tempRoom = adventure.getCurrentRoom();
-        adventure.setCurrentRoom(adventure.getXyzzyRoom());
-        adventure.setXyzzyRoom(tempRoom);
+        Room tempRoom = map.getCurrentRoom();
+        map.setCurrentRoom(map.getXyzzyRoom());
+        map.setXyzzyRoom(tempRoom);
 
         System.out.println("XYZZY!");
         System.out.println("\033[3mYou are magically teleported to a new room.\033[0m");
     }
 
+    // TODO: læg i adventure klassen
     // check to see if you won
     public void wincheck() {
-        if (adventure.getCurrentRoom().getName().equals("Room 5")) {
+        if (map.getCurrentRoom().getName().equals("The Treasury")) {
             System.out.println("You win!");
             exit();
         }
     }
 
+    // TODO: læg i adventure klassen
     // shows info about the current room
     // prints short and long descriptions, depending on the current room visited status.
     public void showInfo() {
-        if (!adventure.getCurrentRoom().getVisited()) {
-            adventure.getCurrentRoom().setVisited(true);
-            System.out.println(adventure.getName() + adventure.longDescription());
+        if (!map.getCurrentRoom().getVisited()) {
+            map.getCurrentRoom().setVisited(true);
+            System.out.println(map.getName() + map.longDescription());
         } else {
-            System.out.println(adventure.getName() + adventure.shortDescription());
+            System.out.println(map.getName() + map.shortDescription());
         }
     }
+
+    public void welcomeMessage() {
+        System.out.println();
+        System.out.println("Welcome to the adventure!");
+        System.out.println("Type 'help' to get started.");
+        System.out.println("Type 'exit' to end the game.");
+    }
+
 
     // runs the game
     public void run() {
@@ -117,8 +133,7 @@ public class UserInterface {
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
 
-        System.out.println();
-        help();
+        welcomeMessage();
         String command = input.nextLine().toLowerCase();
         while (run) {
             switch (command) {
