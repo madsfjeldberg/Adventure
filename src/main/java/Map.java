@@ -2,7 +2,7 @@
 
 public class Map {
 
-    private Room currentRoom;
+    private final Room startingRoom;
 
     public Map() {
         Room room1 = new Room("The Crimson Chamber:\n", "A featureless room with two doors.", "Featureless with one door.");
@@ -35,13 +35,13 @@ public class Map {
         room9.setNorth(room6);
         room9.setWest(room8);
 
-        currentRoom = room1;
+        startingRoom = room1;
     }
 
     // TODO: buildMap funktion
 
-    public Room getCurrentRoom() {
-        return currentRoom;
+    public Room getStartingRoom() {
+        return startingRoom;
     }
 
 }

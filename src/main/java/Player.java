@@ -28,6 +28,8 @@ public class Player {
         System.out.println("'e', 'n', 'go south', 'go north', etc.");
         System.out.println("Type 'look' to look around the room.");
         System.out.println("Type 'exit' to end the game.");
+        System.out.println("Type 'take *item*' to take an item from the room.");
+        System.out.println("Type 'i' or 'inventory' to see your inventory.");
     }
 
     public void showDescription() {

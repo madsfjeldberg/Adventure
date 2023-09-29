@@ -6,17 +6,18 @@ public class Adventure {
 
     public Adventure() {
         Map map = new Map();
-        player = new Player(map.getCurrentRoom());
+        player = new Player(map.getStartingRoom());
     }
 
+    // afslutter spillet
     public void exit() {
         System.exit(0);
     }
 
+    // move metode, flytter 'player' til nyt rum
     public void move(String command) {
         player.move(command);
     }
-
 
     // tp metode
     public void xyzzy() {

@@ -1,4 +1,5 @@
 public class Room {
+
     private final String name;
     private final String longDescription;
     private final String shortDescription;
@@ -41,14 +42,6 @@ public class Room {
 
     public boolean getVisited() {
         return isVisited;
-    }
-
-    public String getLongDescription() {
-        return longDescription;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
     }
 
     public void setVisited() {
