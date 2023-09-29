@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+
 public class Player {
 
     private Room currentRoom;
     private Room xyzzyRoom;
+    ArrayList<Item> inventory;
 
     public Player(Room currentRoom) {
-        xyzzyRoom = currentRoom;
+        this.xyzzyRoom = currentRoom;
         this.currentRoom = currentRoom;
+        this.inventory = new ArrayList<Item>();
     }
 
     public void xyzzy() {
