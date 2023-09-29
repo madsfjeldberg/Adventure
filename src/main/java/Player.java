@@ -12,6 +12,10 @@ public class Player {
         this.inventory = new ArrayList<Item>();
     }
 
+    public ArrayList<Item> getInventory() {
+        return this.inventory;
+    }
+
     public void xyzzy() {
         Room tempRoom;
         tempRoom = currentRoom;

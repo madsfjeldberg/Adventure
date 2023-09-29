@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 // TODO: omskriv UI til at indeholde al sout
@@ -18,6 +19,7 @@ public class UserInterface {
         System.out.println("Welcome to the adventure!");
         System.out.println("Type 'help' to get started.");
         System.out.println("Type 'exit' to end the game.");
+        System.out.println("\u2500".repeat(100));
     }
 
     // runs the game
@@ -27,7 +29,7 @@ public class UserInterface {
                 ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
-
+        System.out.println("\u2500".repeat(100));
         welcomeMessage();
         while (run) {
             String userInput = input.nextLine().toLowerCase();

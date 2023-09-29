@@ -38,7 +38,7 @@ public class Adventure {
         player.xyzzy();
     }
 
-    // viser hjælpetektst
+    // viser hjælpetekst
     public void help() {
         player.help();
     }
