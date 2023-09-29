@@ -12,6 +12,24 @@ public class Item {
         this.ability = ability;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getShortName() {
+        return shortName;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAbility() {
+        return ability;
+    }
+
+    @Override
+    public String toString() {
+        return "Item = " + name + " (" + shortName +") " + description + " (" + ability +")";
+    }
 }

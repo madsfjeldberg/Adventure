@@ -24,6 +24,7 @@ public class Player {
 
     public void look() {
         System.out.println(currentRoom.longdesc());
+        System.out.println(currentRoom.getItems());
     }
 
     public void help() {
@@ -43,6 +44,30 @@ public class Player {
         } else {
             System.out.println(currentRoom.shortdesc());
         }
+    }
+
+    public boolean takeItem(String name) {
+        for (Object i : currentRoom.getItems()) {
+            Item item = (Item) i;
+            if (item.getName().equals(name) || item.getShortName().equals(name)) {
+                inventory.add(item);
+                currentRoom.getItems().remove(item);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean dropItem(String name) {
+        for (Object i : getInventory()) {
+            Item item = (Item) i;
+            if (item.getName().equals(name) || item.getShortName().equals(name)) {
+                inventory.remove(item);
+                currentRoom.getItems().add(item);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void wincheck() {

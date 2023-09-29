@@ -20,6 +20,18 @@ public class Room {
         this.items = new ArrayList<>();
     }
 
+
+    public void addItem(String name, String shortName, String description, String ability) {
+        this.items.add(new Item(name, shortName, description, ability));
+    }
+
+    public ArrayList getItems() {
+        return this.items;
+    }
+    public ArrayList dropItems() {
+        return this.items;
+    }
+
     public String getName() {
         return name;
     }

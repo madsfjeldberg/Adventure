@@ -36,6 +36,9 @@ public class Map {
         room9.setWest(room8);
 
         startingRoom = room1;
+
+        room1.addItem("fisse", "fis", "kæft den stinker", "DMG");
+
     }
 
     // TODO: buildMap funktion

@@ -29,8 +29,13 @@ public class UserInterface {
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
 
         welcomeMessage();
-        String command = input.nextLine().toLowerCase();
         while (run) {
+            String userInput = input.nextLine().toLowerCase();
+            String[] inputSplit = userInput.split(" ");
+            String command = inputSplit[0];
+            String choice = "";
+            if (inputSplit.length >1) choice = inputSplit[1];
+
             switch (command) {
                 case "exit" -> {
                     adventure.exit();
@@ -39,13 +44,31 @@ public class UserInterface {
                 case "help" -> adventure.help();
                 case "look" -> adventure.look();
                 case "xyzzy" -> adventure.xyzzy();
+                case "take" -> {
+                    boolean successtake = adventure.take(choice);
+                    if (successtake) {
+                        System.out.println("You have taken the " + choice);
+                    } else {
+                        System.out.println("You can't take " + choice);
+                    }
+                }
+                case "drop" -> {
+                    boolean successDrop = adventure.drop(choice);
+                    if (successDrop) {
+                        System.out.println("You have dropped the " + choice);
+                    } else {
+                        System.out.println("You can't drop " + choice);
+                    }
+                }
+
+
+                case "inventory" -> System.out.println(adventure.inventory());
                 default -> adventure.move(command);
             }
 
             adventure.wincheck();
 
             System.out.println("What do you do?");
-            command = input.nextLine().toLowerCase();
         }
     }
 }
