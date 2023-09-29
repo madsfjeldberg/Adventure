@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Room {
 
@@ -28,8 +29,10 @@ public class Room {
     public ArrayList getItems() {
         return this.items;
     }
-    public ArrayList dropItems() {
-        return this.items;
+
+    public String showItems() {
+        String list = Arrays.toString(items.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
+        return list;
     }
 
     public String getName() {
@@ -81,6 +84,6 @@ public class Room {
     }
 
     public String longdesc() {
-        return name + longDescription;
+        return longDescription;
     }
 }

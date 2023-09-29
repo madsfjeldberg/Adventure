@@ -15,7 +15,6 @@ public class UserInterface {
     }
 
     public void welcomeMessage() {
-        System.out.println();
         System.out.println("Welcome to the adventure!");
         System.out.println("Type 'help' to get started.");
         System.out.println("Type 'exit' to end the game.");
@@ -62,8 +61,6 @@ public class UserInterface {
                         System.out.println("You can't drop " + choice);
                     }
                 }
-
-
                 case "inventory" -> System.out.println(adventure.inventory());
                 default -> adventure.move(command);
             }

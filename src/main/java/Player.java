@@ -9,7 +9,7 @@ public class Player {
     public Player(Room currentRoom) {
         this.xyzzyRoom = currentRoom;
         this.currentRoom = currentRoom;
-        this.inventory = new ArrayList<Item>();
+        this.inventory = new ArrayList<>();
     }
 
     public ArrayList<Item> getInventory() {
@@ -28,7 +28,14 @@ public class Player {
 
     public void look() {
         System.out.println(currentRoom.longdesc());
-        System.out.println(currentRoom.getItems());
+        if (!currentRoom.getItems().isEmpty()) {
+            System.out.println("ITEMS:");
+            System.out.print(currentRoom.showItems());
+            System.out.println();
+        } else {
+            System.out.println("There are no items here.");
+        }
+
     }
 
     public void help() {
@@ -63,8 +70,8 @@ public class Player {
     }
 
     public boolean dropItem(String name) {
-        for (Object i : getInventory()) {
-            Item item = (Item) i;
+        for (Item i : getInventory()) {
+            Item item = i;
             if (item.getName().equals(name) || item.getShortName().equals(name)) {
                 inventory.remove(item);
                 currentRoom.getItems().add(item);
@@ -75,7 +82,7 @@ public class Player {
     }
 
     public void wincheck() {
-        if (currentRoom.getName().equals("The Treasury")) {
+        if (currentRoom.getName().equals("The Treasury:\n")) {
             System.out.println("You win!");
             System.exit(0);
         }

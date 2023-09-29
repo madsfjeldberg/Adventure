@@ -38,6 +38,7 @@ public class Map {
         startingRoom = room1;
 
         room1.addItem("fisse", "fis", "kæft den stinker", "DMG");
+        room1.addItem("massivt bat", "bat", "rart at ha", "DMG");
 
     }
 

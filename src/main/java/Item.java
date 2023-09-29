@@ -28,8 +28,9 @@ public class Item {
         return ability;
     }
 
+
     @Override
     public String toString() {
-        return "Item = " + name + " (" + shortName +") " + description + " (" + ability +")";
+        return name + ": " + description;
     }
 }
