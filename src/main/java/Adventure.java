@@ -11,6 +11,10 @@ public class Adventure {
         player = new Player(map.getStartingRoom());
     }
 
+    public String showInventory() {
+        return player.showInventory();
+    }
+
     // afslutter spillet
     public void exit() {
         System.exit(0);

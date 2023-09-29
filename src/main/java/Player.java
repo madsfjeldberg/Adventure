@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Player {
 
@@ -12,8 +13,13 @@ public class Player {
         this.inventory = new ArrayList<>();
     }
 
+
+    public String showInventory() {
+        String list = Arrays.toString(inventory.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
+        return list;
+    }
     public ArrayList<Item> getInventory() {
-        return this.inventory;
+        return inventory;
     }
 
     public void xyzzy() {
@@ -39,20 +45,25 @@ public class Player {
     }
 
     public void help() {
-        System.out.println("The purpose of the game is to find the treasure.");
-        System.out.println("You can move around the rooms by typing");
-        System.out.println("'e', 'n', 'go south', 'go north', etc.");
-        System.out.println("Type 'look' to look around the room.");
-        System.out.println("Type 'exit' to end the game.");
-        System.out.println("Type 'take *item*' to take an item from the room.");
-        System.out.println("Type 'i' or 'inventory' to see your inventory.");
+        System.out.println("EXIT    Exits the game.");
+        System.out.println("LOOK    Looks around the room.");
+        System.out.println("TAKE    Tries to take an item from the room.");
+        System.out.println("DROP    Tries to drop an item from your inventory.");
+        System.out.println("XYZZY   Magically transports you backwards through time.");
+        System.out.println("HELP    Shows this message.");
+        System.out.println("I       Shows your inventory.");
+        System.out.println("Move around the rooms by typing");
+        System.out.println("'e' for east, 'n' for north, etc.");
+
     }
 
     public void showDescription() {
         if (!currentRoom.getVisited()) {
             currentRoom.setVisited();
+            System.out.print(currentRoom.getName());
             System.out.println(currentRoom.longdesc());
         } else {
+            System.out.print(currentRoom.getName());
             System.out.println(currentRoom.shortdesc());
         }
     }
@@ -99,28 +110,12 @@ public class Player {
 
     public void move(String command) {
 
-        switch (command) {
-            case "go north":
-            case "north":
-            case "n":
-                moveToRoom(currentRoom.getNorth());
-                break;
-            case "go south":
-            case "south":
-            case "s":
-                moveToRoom(currentRoom.getSouth());
-                break;
-            case "go west":
-            case "west":
-            case "w":
-                moveToRoom(currentRoom.getWest());
-                break;
-            case "go east":
-            case "east":
-            case "e":
-                moveToRoom(currentRoom.getEast());
-                break;
-            default: System.out.println("Invalid input. Try again.");
+        switch(command) {
+            case "go north", "north", "n" -> moveToRoom(currentRoom.getNorth());
+            case "go south", "south", "s" -> moveToRoom(currentRoom.getSouth());
+            case "go west", "west", "w" -> moveToRoom(currentRoom.getWest());
+            case "go east", "east", "e" -> moveToRoom(currentRoom.getEast());
+            default -> System.out.println("Invalid input. Try again.");
         }
     }
 }

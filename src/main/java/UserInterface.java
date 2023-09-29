@@ -31,6 +31,8 @@ public class UserInterface {
         System.out.println("\u2500".repeat(100));
         welcomeMessage();
         while (run) {
+            System.out.println();
+            System.out.print("What do you do? >");
             String userInput = input.nextLine().toLowerCase();
             String[] inputSplit = userInput.split(" ");
             String command = inputSplit[0];
@@ -61,14 +63,17 @@ public class UserInterface {
                         System.out.println("You can't drop " + choice);
                     }
                 }
-                case "inventory" -> System.out.println(adventure.inventory());
+                case "inventory", "i" -> {
+                    if (adventure.inventory().size() == 0) {
+                        System.out.println("Your inventory is empty.");
+                    } else {
+                        System.out.println("Your inventory:");
+                        System.out.println(adventure.showInventory());
+                    }
+                }
                 default -> adventure.move(command);
             }
-
             adventure.wincheck();
-            System.out.println();
-            System.out.print("What do you do? >");
-
         }
     }
 }
