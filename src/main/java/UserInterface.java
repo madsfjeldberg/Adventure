@@ -66,8 +66,9 @@ public class UserInterface {
             }
 
             adventure.wincheck();
+            System.out.println();
+            System.out.print("What do you do? >");
 
-            System.out.println("What do you do?");
         }
     }
 }
