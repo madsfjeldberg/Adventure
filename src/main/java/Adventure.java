@@ -11,6 +11,7 @@ public class Adventure {
         player = new Player(map.getStartingRoom());
     }
 
+    // viser inventory
     public String showInventory() {
         return player.showInventory();
     }
@@ -26,14 +27,18 @@ public class Adventure {
         player.move(command);
     }
 
+    // tager en ting fra rummet hvis den eksisterer
     public boolean take(String command) {
         return player.takeItem(command);
     }
 
+    // smider en ting i rummet fra inventory
     public boolean drop(String command) {
         return player.dropItem(command);
     }
 
+    // metode til at hente inventory til take og drop metoder.
+    // viser ikke inventory.
     public ArrayList<Item> inventory() {
         return player.getInventory();
     }
