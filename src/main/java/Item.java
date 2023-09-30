@@ -1,9 +1,9 @@
 public class Item {
 
-    private String name;
-    private String shortName;
-    private String description;
-    private String type; // Weapon eller food
+    private final String name;
+    private final String shortName;
+    private final String description;
+    private final String type; // Weapon eller food
 
     public Item(String name, String shortName, String description, String type) {
         this.name = name;

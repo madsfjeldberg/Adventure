@@ -4,13 +4,14 @@ import java.util.Scanner;
 // TODO: omskriv UI til at indeholde al sout
 // TODO: kun logic i backend pls
 
+
 public class UserInterface {
 
     private final Adventure adventure;
     private final Scanner input;
 
-    public UserInterface() {
-        adventure = new Adventure();
+    public UserInterface(Adventure adventure) {
+        this.adventure = adventure;
         input = new Scanner(System.in);
     }
 
