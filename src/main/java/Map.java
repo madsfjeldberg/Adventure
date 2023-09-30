@@ -37,15 +37,14 @@ public class Map {
 
         startingRoom = room1;
 
-        room1.addItem("Small dagger", "dagger", "Slightly rusted, but still sharp.", "DMG");
-        room1.addItem("Massive Bat", "bat", "rart at ha", "DMG");
-        room4.addItem("Enchanted Book", "book", "Emanates with arcane magic.", "DMG");
-        room3.addItem("Rusty Hook", "hook", "Stained with old, dried blood.", "DMG");
-        room4.addItem("Half-eaten apple", "apple", "please don't eat this.", "HP");
-        room6.addItem("Delicious lasagna", "lasagna", "Looks absolutely delicious.", "DMG");
-        room7.addItem("Wand of Fire", "wand", "Probably gonna get you in trouble.", "DMG");
-        room1.addItem("Mom's Sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", "HP");
-
+        room1.addItem("Small dagger", "dagger", "Slightly rusted, but still sharp.", "Weapon");
+        room1.addItem("Baseball Bat", "bat", "rart at ha", "Weapon");
+        room4.addItem("Enchanted Book", "book", "Emanates with arcane magic.", "Weapon");
+        room3.addItem("Rusty Hook", "hook", "Stained with old, dried blood.", "Weapon");
+        room4.addItem("Half-eaten apple", "apple", "please don't eat this.", "Food");
+        room6.addItem("Delicious lasagna", "lasagna", "Looks absolutely delicious.", "Weapon");
+        room7.addItem("Wand of Fire", "wand", "Probably gonna get you in trouble.", "Food");
+        room1.addItem("Mom's Sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", "Food");
 
     }
 
@@ -54,5 +53,4 @@ public class Map {
     public Room getStartingRoom() {
         return startingRoom;
     }
-
 }

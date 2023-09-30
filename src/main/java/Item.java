@@ -3,13 +3,13 @@ public class Item {
     private String name;
     private String shortName;
     private String description;
-    private String ability; // DMG eller HP
+    private String type; // Weapon eller food
 
-    public Item(String name, String shortName, String description, String ability) {
+    public Item(String name, String shortName, String description, String type) {
         this.name = name;
         this.shortName = shortName;
         this.description = description;
-        this.ability = ability;
+        this.type = type;
     }
 
     public String getName() {
@@ -24,13 +24,12 @@ public class Item {
         return description;
     }
 
-    public String getAbility() {
-        return ability;
+    public String getType() {
+        return type;
     }
-
 
     @Override
     public String toString() {
-        return name + ": " + description;
+        return "Name: " + name + "\nType: " + type + "\nDescription: \"" + description + "\"\n";
     }
 }

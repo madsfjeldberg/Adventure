@@ -44,7 +44,17 @@ public class UserInterface {
                     adventure.exit();
                     run = false;
                 }
-                case "help" -> adventure.help();
+                case "help" -> {
+                    System.out.println("EXIT    Exits the game.");
+                    System.out.println("LOOK    Looks around the room.");
+                    System.out.println("TAKE    Tries to take an item from the room.");
+                    System.out.println("DROP    Tries to drop an item from your inventory.");
+                    System.out.println("XYZZY   Magically transports you backwards through time.");
+                    System.out.println("HELP    Shows this message.");
+                    System.out.println("I       Shows your inventory.");
+                    System.out.println("Move around the rooms by typing");
+                    System.out.println("'e' for east, 'n' for north, etc.");
+                }
                 case "look" -> adventure.look();
                 case "xyzzy" -> adventure.xyzzy();
                 case "take" -> {

@@ -17,6 +17,7 @@ public class Adventure {
 
     // afslutter spillet
     public void exit() {
+        System.out.println("Exiting the game...");
         System.exit(0);
     }
 
@@ -40,11 +41,6 @@ public class Adventure {
     // tp metode
     public void xyzzy() {
         player.xyzzy();
-    }
-
-    // viser hjælpetekst
-    public void help() {
-        player.help();
     }
 
     // viser beskrivelse af rummet

@@ -13,7 +13,6 @@ public class Player {
         this.inventory = new ArrayList<>();
     }
 
-
     public String showInventory() {
         String list = Arrays.toString(inventory.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
         return list;
@@ -41,20 +40,6 @@ public class Player {
         } else {
             System.out.println("There are no items here.");
         }
-
-    }
-
-    public void help() {
-        System.out.println("EXIT    Exits the game.");
-        System.out.println("LOOK    Looks around the room.");
-        System.out.println("TAKE    Tries to take an item from the room.");
-        System.out.println("DROP    Tries to drop an item from your inventory.");
-        System.out.println("XYZZY   Magically transports you backwards through time.");
-        System.out.println("HELP    Shows this message.");
-        System.out.println("I       Shows your inventory.");
-        System.out.println("Move around the rooms by typing");
-        System.out.println("'e' for east, 'n' for north, etc.");
-
     }
 
     public void showDescription() {
