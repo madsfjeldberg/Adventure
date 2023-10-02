@@ -1,3 +1,4 @@
+import javax.sound.sampled.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -50,7 +51,6 @@ public class Player {
             System.out.print(currentRoom.getName());
             System.out.println(currentRoom.longdesc());
         } else {
-            System.out.print(currentRoom.getName());
             System.out.println(currentRoom.shortdesc());
         }
     }
@@ -89,12 +89,32 @@ public class Player {
         }
     }
 
+    public void playRoomEntrySound() {
+        try {
+            String soundFilePath = "footsteps-4.wav";
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Adventure.class.getResource(soundFilePath));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+
+            clip.start();
+            Thread.sleep(clip.getMicrosecondLength() / 1000);
+
+            // Only close the clip and audioInputStream if it played
+            clip.close();
+            audioInputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void moveToRoom(Room room) {
         // flytter currentRoom til room
         if (room == null) {
             System.out.println("There is no room here.");
         } else {
             currentRoom = room;
+            playRoomEntrySound();
             showDescription();
         }
     }
