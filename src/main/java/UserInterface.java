@@ -31,6 +31,7 @@ public class UserInterface {
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
         System.out.println("─".repeat(100));
         welcomeMessage();
+        // adventure.startMenuSound();
         while (run) {
             System.out.println();
             System.out.print("What do you do?");

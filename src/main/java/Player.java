@@ -1,6 +1,3 @@
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -53,7 +50,6 @@ public class Player {
             System.out.print(currentRoom.getName());
             System.out.println(currentRoom.longdesc());
         } else {
-            System.out.print(currentRoom.getName());
             System.out.println(currentRoom.shortdesc());
         }
     }
