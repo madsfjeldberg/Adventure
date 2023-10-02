@@ -39,18 +39,18 @@ public class Adventure {
 
     // metode til at hente inventory til take og drop metoder.
     // viser ikke inventory.
-    public ArrayList<Item> inventory() {
+    public ArrayList<Item> getInventory() {
         return player.getInventory();
     }
 
     // tp metode
-    public void xyzzy() {
-        player.xyzzy();
+    public String xyzzy() {
+        return player.xyzzy();
     }
 
     // viser beskrivelse af rummet
-    public void look() {
-        player.look();
+    public String look() {
+        return player.look();
     }
 
     // check to see if you won

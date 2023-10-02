@@ -14,15 +14,15 @@ public class Player {
     }
 
     public String showInventory() {
-        // fjerner []  og , når man printer Arraylist
-        String list = Arrays.toString(inventory.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
-        return list;
+        // fjerner [] og , når man printer Arraylist
+        return Arrays.toString(inventory.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
+
     }
     public ArrayList<Item> getInventory() {
         return inventory;
     }
 
-    public void xyzzy() {
+    public String xyzzy() {
         // sætter en midlertidig variabel til currentRoom, flytter currentRoom til
         // xyzzyRoom og sætter xyzzyRoom til currentRoom
         Room tempRoom;
@@ -30,19 +30,15 @@ public class Player {
         currentRoom = xyzzyRoom;
         xyzzyRoom = tempRoom;
 
-        System.out.println("XYZZY!");
-        System.out.println("\033[3mYou are magically transported backwards through time, to a place that seems very familiar...\033[0m");
+        return "XYZZY!\n\033[3mYou are magically transported backwards through time, to a place that seems very familiar...\033[0m";
     }
 
-    public void look() {
+    public String look() {
         // viser lang beskrivelse, og items hvis de eksisterer
-        System.out.println(currentRoom.longdesc());
         if (!currentRoom.getItems().isEmpty()) {
-            System.out.println("ITEMS:");
-            System.out.print(currentRoom.showItems());
-            System.out.println();
+            return (currentRoom.longdesc() + "\nITEMS:\n" + currentRoom.showItems() + "\n");
         } else {
-            System.out.println("There are no items here.");
+            return (currentRoom.longdesc() + "\nThere are no items here.");
         }
     }
 

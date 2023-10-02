@@ -37,7 +37,7 @@ public class Map {
 
         startingRoom = room1;
 
-        room1.addItem("Small dagger", "dagger", "Slightly rusted, but still sharp.", "Weapon");
+        room1.addItem("Small dagger", "dagger", "Slightly rusted but still sharp.", "Weapon");
         room1.addItem("Baseball Bat", "bat", "rart at ha", "Weapon");
         room4.addItem("Enchanted Book", "book", "Emanates with arcane magic.", "Weapon");
         room3.addItem("Rusty Hook", "hook", "Stained with old, dried blood.", "Weapon");

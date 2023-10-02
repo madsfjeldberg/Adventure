@@ -18,7 +18,7 @@ public class UserInterface {
         System.out.println("Welcome to the adventure!");
         System.out.println("Type 'help' to get started.");
         System.out.println("Type 'exit' to end the game.");
-        System.out.println("\u2500".repeat(100));
+        System.out.println("─".repeat(100));
     }
 
     // runs the game
@@ -28,11 +28,12 @@ public class UserInterface {
                 ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
-        System.out.println("\u2500".repeat(100));
+        System.out.println("─".repeat(100));
         welcomeMessage();
         while (run) {
             System.out.println();
-            System.out.print("What do you do? >");
+            System.out.print("What do you do?");
+            System.out.print("> ");
             String userInput = input.nextLine().toLowerCase();
             String[] inputSplit = userInput.split(" ");
             String command = inputSplit[0];
@@ -55,11 +56,11 @@ public class UserInterface {
                     System.out.println("Move around the rooms by typing");
                     System.out.println("'e' for east, 'n' for north, etc.");
                 }
-                case "look" -> adventure.look();
-                case "xyzzy" -> adventure.xyzzy();
+                case "look" -> System.out.println(adventure.look());
+                case "xyzzy" -> System.out.println(adventure.xyzzy());
                 case "take" -> {
-                    boolean successtake = adventure.take(choice);
-                    if (successtake) {
+                    boolean successTake = adventure.take(choice);
+                    if (successTake) {
                         System.out.println("You have taken the " + choice);
                     } else {
                         System.out.println("You can't take " + choice);
@@ -74,7 +75,7 @@ public class UserInterface {
                     }
                 }
                 case "inventory", "i" -> {
-                    if (adventure.inventory().isEmpty()) {
+                    if (adventure.getInventory().isEmpty()) {
                         System.out.println("Your inventory is empty.");
                     } else {
                         System.out.println("Your inventory:");
