@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.Scanner;
 
 // TODO: omskriv UI til at indeholde al sout
@@ -75,7 +74,7 @@ public class UserInterface {
                     }
                 }
                 case "inventory", "i" -> {
-                    if (adventure.inventory().size() == 0) {
+                    if (adventure.inventory().isEmpty()) {
                         System.out.println("Your inventory is empty.");
                     } else {
                         System.out.println("Your inventory:");

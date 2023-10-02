@@ -26,13 +26,12 @@ public class Room {
         this.items.add(new Item(name, shortName, description, ability));
     }
 
-    public ArrayList getItems() {
+    public ArrayList<Item> getItems() {
         return this.items;
     }
 
     public String showItems() {
-        String list = Arrays.toString(items.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
-        return list;
+        return Arrays.toString(items.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
     }
 
     public String getName() {
