@@ -4,6 +4,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 public class Sound {
+
+
     public static void startMenuSound() {
         try {
             String soundFilePath = "caves-of-dawn-10376.wav";
@@ -12,11 +14,8 @@ public class Sound {
             clip.open(audioInputStream);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-15.0f); // Reduce volume by 10 decibels.
+            gainControl.setValue(-15.0f); // Reduce volume by 15 decibels.
             clip.start();
-
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,7 +49,7 @@ public class Sound {
             clip.open(audioInputStream);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-20.0f); // Reduce volume by 10 decibels.
+            gainControl.setValue(-20.0f); // Reduce volume by 20 decibels.
             clip.start();
             Thread.sleep(clip.getMicrosecondLength() / 2000);
 

@@ -1,9 +1,5 @@
 import java.util.Scanner;
 
-// TODO: omskriv UI til at indeholde al sout
-// TODO: kun logic i backend pls
-
-
 public class UserInterface {
 
     private final Adventure adventure;
@@ -84,6 +80,7 @@ public class UserInterface {
                         System.out.println(adventure.showInventory());
                     }
                 }
+                case "health", "hp", "h" -> System.out.println(adventure.health());
                 default -> adventure.move(command);
             }
             adventure.wincheck();

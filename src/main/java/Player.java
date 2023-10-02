@@ -6,11 +6,13 @@ public class Player {
     private Room currentRoom;
     private Room xyzzyRoom;
     ArrayList<Item> inventory;
+    private int health;
 
     public Player(Room currentRoom) {
         this.xyzzyRoom = currentRoom;
         this.currentRoom = currentRoom;
         this.inventory = new ArrayList<>();
+        health = 100;
     }
 
     public String showInventory() {
@@ -18,9 +20,15 @@ public class Player {
         return Arrays.toString(inventory.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
 
     }
+
     public ArrayList<Item> getInventory() {
         return inventory;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
 
     public String xyzzy() {
         // sætter en midlertidig variabel til currentRoom, flytter currentRoom til

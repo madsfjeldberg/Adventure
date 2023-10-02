@@ -17,6 +17,9 @@ public class Adventure {
         return player.showInventory();
     }
 
+    public int health() {
+        return player.getHealth();
+    }
     // afslutter spillet
     public void exit() {
         System.out.println("Exiting the game...");

@@ -48,7 +48,7 @@ public class Map {
 
     }
 
-    // TODO: buildMap funktion
+    // TODO: buildMap funktion?
 
     public Room getStartingRoom() {
         return startingRoom;
