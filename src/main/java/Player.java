@@ -1,3 +1,6 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -84,6 +87,7 @@ public class Player {
     public void wincheck() {
         // checker om du er i det sidste rum
         if (currentRoom.getName().equals("The Treasury:\n")) {
+            Sound.playVictorySound();
             System.out.println("You win!");
             System.exit(0);
         }
@@ -95,6 +99,7 @@ public class Player {
             System.out.println("There is no room here.");
         } else {
             currentRoom = room;
+            Sound.playRoomEntrySound();
             showDescription();
         }
     }

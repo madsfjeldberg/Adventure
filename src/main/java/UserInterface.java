@@ -24,6 +24,7 @@ public class UserInterface {
     // runs the game
     public void run() {
         boolean run = true;
+        Sound.startMenuSound();
         System.out.println("""
                 ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s

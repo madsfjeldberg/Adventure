@@ -26,7 +26,7 @@ public class Adventure {
     // move metode, flytter 'player' til nyt rum
     public void move(String command) {
         player.move(command);
-        playRoomEntrySound();
+
     }
 
     // tager en ting fra rummet hvis den eksisterer
@@ -60,39 +60,5 @@ public class Adventure {
         player.wincheck();
     }
 
-    public void startMenuSound() {
-        try {
-            String soundFilePath = "caves-of-dawn-10376.mp3";
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Adventure.class.getResource(soundFilePath));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
 
-            clip.close();
-            audioInputStream.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void playRoomEntrySound() {
-        try {
-            String soundFilePath = "footsteps-4.wav";
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Adventure.class.getResource(soundFilePath));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-
-                clip.start();
-                Thread.sleep(clip.getMicrosecondLength() / 1000);
-
-                // Only close the clip and audioInputStream if it played
-                clip.close();
-                audioInputStream.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
