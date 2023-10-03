@@ -1,9 +1,9 @@
 public class Item {
 
-    private final String name;
-    private final String shortName;
-    private final String description;
-    private final String type; // Weapon eller food
+    protected final String name;
+    protected final String shortName;
+    protected final String description;
+    protected final String type; // Weapon eller food
 
     public Item(String name, String shortName, String description, String type) {
         this.name = name;
@@ -32,4 +32,5 @@ public class Item {
     public String toString() {
         return "Name: " + name + "\nType: " + type + "\nDescription: \"" + description + "\"\n";
     }
+
 }

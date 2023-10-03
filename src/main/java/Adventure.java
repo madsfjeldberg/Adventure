@@ -12,6 +12,14 @@ public class Adventure {
         player = new Player(map.getStartingRoom());
     }
 
+    public boolean fullCheck(String command) {
+        return player.fullCheck(command);
+    }
+
+    public boolean poisonCheck(String command) {
+        return player.poisonCheck(command);
+    }
+
     // viser inventory
     public String showInventory() {
         return player.showInventory();
@@ -19,11 +27,6 @@ public class Adventure {
 
     public int health() {
         return player.getHealth();
-    }
-    // afslutter spillet
-    public void exit() {
-        System.out.println("Exiting the game...");
-        System.exit(0);
     }
 
     // move metode, flytter 'player' til nyt rum
@@ -33,13 +36,18 @@ public class Adventure {
     }
 
     // tager en ting fra rummet hvis den eksisterer
-    public boolean take(String command) {
+    public ReturnValue take(String command) {
         return player.takeItem(command);
     }
 
     // smider en ting i rummet fra inventory
-    public boolean drop(String command) {
+    public ReturnValue drop(String command) {
         return player.dropItem(command);
+    }
+
+    // spiser et Food item
+    public ReturnValue eat(String command) {
+        return player.eatItem(command);
     }
 
     // metode til at hente inventory til take og drop metoder.
@@ -63,5 +71,9 @@ public class Adventure {
         player.wincheck();
     }
 
-
+    // afslutter spillet
+    public void exit() {
+        System.out.println("Exiting the game...");
+        System.exit(0);
+    }
 }

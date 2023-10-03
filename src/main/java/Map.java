@@ -41,10 +41,12 @@ public class Map {
         room1.addItem("Baseball bat", "bat", "rart at ha", "Weapon");
         room4.addItem("Enchanted book", "book", "Emanates with arcane magic.", "Weapon");
         room3.addItem("Rusty Hook", "hook", "Stained with old, dried blood.", "Weapon");
-        room4.addItem("Half-eaten apple", "apple", "please don't eat this.", "Food");
-        room6.addItem("Delicious lasagna", "lasagna", "Looks absolutely delicious.", "Weapon");
-        room7.addItem("Wand of Fire", "wand", "Probably gonna get you in trouble.", "Food");
-        room1.addItem("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", "Food");
+        room4.addFood("Half-eaten apple", "apple", "please don't eat this.", "Food", -10);
+        room6.addFood("Delicious lasagna", "lasagna", "Looks absolutely delicious.", "Food", 20);
+        room7.addItem("Wand of Fire", "wand", "Probably gonna get you in trouble.", "Weapon");
+        room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", "Food", 5);
+        room2.addFood("Rotten banana", "banana", "its turned black", -10);
+
 
     }
 

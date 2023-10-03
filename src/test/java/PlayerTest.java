@@ -8,10 +8,17 @@ public class PlayerTest {
     @BeforeEach
     void setUp() {
 
-
     }
 
     @Test
-    void name() {
+    public void testShowDescription() {
+        String expectedDescription = "Short description.";
+        String actualDescription = player.showDescription();
+        room.setVisited();
+        assertFalse(room.getVisited());
+
+        assertTrue(room.getVisited());
+
+
     }
 }

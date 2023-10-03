@@ -57,19 +57,17 @@ public class UserInterface {
                 case "look" -> System.out.println(adventure.look());
                 case "xyzzy" -> System.out.println(adventure.xyzzy());
                 case "take" -> {
-                    boolean successTake = adventure.take(choice);
-                    if (successTake) {
-                        System.out.println("You have taken the " + choice);
-                    } else {
-                        System.out.println("You can't take " + choice);
+                    switch (adventure.take(choice)) {
+                        case OK -> System.out.println("You have taken the " + choice + ".");
+                        case NOT_FOUND -> System.out.println("There's no " + choice + " here.");
                     }
+
                 }
                 case "drop" -> {
-                    boolean successDrop = adventure.drop(choice);
-                    if (successDrop) {
-                        System.out.println("You have dropped the " + choice);
-                    } else {
-                        System.out.println("You can't drop " + choice);
+                    switch (adventure.drop(choice)) {
+                        case OK -> System.out.println("You have dropped the " + choice + ".");
+                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+
                     }
                 }
                 case "inventory", "i" -> {
@@ -80,7 +78,45 @@ public class UserInterface {
                         System.out.println(adventure.showInventory());
                     }
                 }
-                case "health", "hp", "h" -> System.out.println(adventure.health());
+
+                // TODO skriv kode til 25 50 75 100% health
+                case "health", "hp", "h" -> {
+                    System.out.println(adventure.health());
+                    int health = adventure.health();
+
+                }
+                case "eat" -> {
+                    switch (adventure.eat(choice)) {
+                        case OK -> {
+                            System.out.println("You have eaten the " + choice + ".");
+                            System.out.println("Your health is now " + adventure.health());
+                        }
+                        case CANT -> System.out.println("You can't eat " + choice + ".");
+                        case FULL -> {
+                            System.out.println("This would put you at max health.");
+                            System.out.println("Are you sure you wanna eat it?");
+                            String comm = input.nextLine().toLowerCase();
+                            boolean check = adventure.fullCheck(comm);
+                            if (check) {
+                                System.out.println("You have eaten the " + choice + ".");
+                                System.out.println("Your health is now " + adventure.health());
+                            } else System.out.println("Wise choice.");
+
+                        }
+                        case POISON -> {
+                            System.out.println("This is probably not a good choice.");
+                            System.out.println("Are you sure you want to eat it?");
+                            String comm = input.nextLine().toLowerCase();
+                            if (adventure.poisonCheck(comm)) {
+                                System.out.println("You have eaten the " + choice + ".");
+                                System.out.println("Your health is now " + adventure.health());
+                            } else System.out.println("Wise choice.");
+
+                        }
+                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+                    }
+
+                }
                 default -> adventure.move(command);
             }
             adventure.wincheck();
