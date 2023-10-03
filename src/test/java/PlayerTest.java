@@ -1,12 +1,16 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
+    private Player player;
+    private Room room;
 
     @BeforeEach
     void setUp() {
+        room = new Room("Test Room", "Long description of the room.", "Short description.");
+        player = new Player(room);
 
     }
 
