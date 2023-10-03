@@ -120,7 +120,6 @@ public class Player {
     }
 
     // spise funktion
-    // TODO lav gift der sætter - health / separat funktion?
     public ReturnValue eatItem(String name) {
         for (Item i : getInventory()) {
             if (i.getName().equals(name) || i.getShortName().equals(name)) {

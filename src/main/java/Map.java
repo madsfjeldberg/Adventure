@@ -45,12 +45,10 @@ public class Map {
         room6.addFood("Delicious lasagna", "lasagna", "Looks absolutely delicious.", "Food", 20);
         room7.addItem("Wand of Fire", "wand", "Probably gonna get you in trouble.", "Weapon");
         room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", "Food", 5);
-        room2.addFood("Rotten banana", "banana", "its turned black","Food", -10);
+        room2.addFood("Rotten banana", "banana", "its turned black.","Food", -10);
 
 
     }
-
-    // TODO: buildMap funktion?
 
     public Room getStartingRoom() {
         return startingRoom;

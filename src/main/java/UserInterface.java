@@ -78,12 +78,20 @@ public class UserInterface {
                         System.out.println(adventure.showInventory());
                     }
                 }
-
-                // TODO skriv kode til 25 50 75 100% health
                 case "health", "hp", "h" -> {
                     System.out.println(adventure.health());
                     int health = adventure.health();
-
+                    if (health == 100) {
+                        System.out.println("You are at max health.");
+                    } else if (health >= 75) {
+                        System.out.println("You are pretty healthy.");
+                    } else if (health >= 50 && health < 75) {
+                        System.out.println("You are kinda alright.");
+                    } else if (health >= 25 && health < 50) {
+                        System.out.println("You kinda dying.");
+                    } else if (health >= 1 && health < 25) {
+                        System.out.println("You as good as dead.");
+                    }
                 }
                 case "eat" -> {
                     switch (adventure.eat(choice)) {
@@ -115,7 +123,6 @@ public class UserInterface {
                         }
                         case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
                     }
-
                 }
                 default -> adventure.move(command);
             }
