@@ -4,4 +4,5 @@ public enum ReturnValue {
     OK,
     FULL,
     POISON,
+    LIQUID,
 }
