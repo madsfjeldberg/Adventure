@@ -30,6 +30,10 @@ public class Room {
         this.items.add(new Food(name, shortName, description, ability, value));
     }
 
+    public void addLiquid(String name, String shortName, String description, String ability, int value) {
+        this.items.add(new Liquid(name, shortName, description, ability, value));
+    }
+
     public ArrayList<Item> getItems() {
         return this.items;
     }

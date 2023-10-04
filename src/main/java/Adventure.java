@@ -1,5 +1,4 @@
 // Controller klasse
-import javax.sound.sampled.*;
 
 import java.util.ArrayList;
 
@@ -50,6 +49,10 @@ public class Adventure {
         return player.eatItem(command);
     }
 
+    public ReturnValue drink(String command) {
+        return player.drinkItem(command);
+    }
+
     // metode til at hente inventory til take og drop metoder.
     // viser ikke inventory.
     public ArrayList<Item> getInventory() {
@@ -76,4 +79,6 @@ public class Adventure {
         System.out.println("Exiting the game...");
         System.exit(0);
     }
+
+
 }

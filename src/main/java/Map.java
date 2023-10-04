@@ -46,6 +46,8 @@ public class Map {
         room7.addItem("Wand of Fire", "wand", "Probably gonna get you in trouble.", "Weapon");
         room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", "Food", 5);
         room2.addFood("Rotten banana", "banana", "its turned black.","Food", -10);
+        room1.addLiquid("Water", "water", "It's water.","Liquid", 5);
+        room2.addLiquid("Mud", "mud", "It's mud.","Liquid", -5);
 
 
     }

@@ -141,6 +141,18 @@ public class Player {
         }
         return ReturnValue.NOT_FOUND;
     }
+    public ReturnValue drinkItem(String command) {
+        for (Item i : getInventory()) {
+            if (i.getName().equals(command) || i.getShortName().equals(command)) {
+                if (i instanceof Liquid) {
+                    setHealth(getHealth() + ((Liquid) i).getValue());
+                    inventory.remove(i);
+                    return ReturnValue.OK;
+                } else return ReturnValue.CANT;
+            }
+        }
+        return ReturnValue.NOT_FOUND;
+    }
 
     // checker om du er i det sidste rum
     public void wincheck() {
@@ -172,4 +184,6 @@ public class Player {
             default -> System.out.println("Invalid input. Try again.");
         }
     }
+
+
 }
