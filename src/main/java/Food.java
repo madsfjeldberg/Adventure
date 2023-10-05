@@ -6,6 +6,7 @@ public class Food extends Item {
         this.value = value;
     }
 
+
     public int getValue() {
         return value;
     }

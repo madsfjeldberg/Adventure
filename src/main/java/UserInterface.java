@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -36,7 +37,7 @@ public class UserInterface {
             String[] inputSplit = userInput.split(" ");
             String command = inputSplit[0];
             String choice = "";
-            if (inputSplit.length >1) choice = inputSplit[1];
+            if (inputSplit.length > 1) choice = inputSplit[1];
 
             switch (command) {
                 case "exit" -> {
@@ -120,13 +121,48 @@ public class UserInterface {
                                 System.out.println("Your health is now " + adventure.health());
                             } else System.out.println("Wise choice.");
 
-                        }
-                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+                        } case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+
+
                     }
                 }
                 default -> adventure.move(command);
+                case "drink" -> {
+                    switch (adventure.drink(choice)) {
+                        case OK -> {
+                            System.out.println("You have drunk the " + choice + ".");
+                            System.out.println("Your health is now " + adventure.health());
+                        }
+                        case CANT -> System.out.println("You can't drink " + choice + ".");
+                        case FULL -> {
+                            System.out.println("This would put you at max health.");
+                            System.out.println("Are you sure you wanna drink it?");
+                            String comm = input.nextLine().toLowerCase();
+                            boolean check = adventure.fullCheck(comm);
+                            if (check) {
+                                System.out.println("You have drunk the " + choice + ".");
+                                System.out.println("Your health is now " + adventure.health());
+                            } else System.out.println("Wise choice.");
+
+                        }
+                        case POISON -> {
+                            System.out.println("This is probably not a good choice.");
+                            System.out.println("Are you sure you want to drink it?");
+                            String comm = input.nextLine().toLowerCase();
+                            if (adventure.poisonCheck(comm)) {
+                                System.out.println("You have drunk the " + choice + ".");
+                                System.out.println("Your health is now " + adventure.health());
+                            } else System.out.println("Wise choice.");
+
+                        }
+                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+
+
+                    }
+                    adventure.wincheck();
+                }
+
             }
-            adventure.wincheck();
         }
     }
 }
