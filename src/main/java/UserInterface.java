@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -18,10 +17,22 @@ public class UserInterface {
         System.out.println("─".repeat(100));
     }
 
+    public void helpMessage() {
+        System.out.println("EXIT    Exits the game.");
+        System.out.println("LOOK    Looks around the room.");
+        System.out.println("TAKE    Tries to take an item from the room.");
+        System.out.println("DROP    Tries to drop an item from your inventory.");
+        System.out.println("XYZZY   Magically transports you backwards through time.");
+        System.out.println("HELP    Shows this message.");
+        System.out.println("I       Shows your inventory.");
+        System.out.println("Move around the rooms by typing");
+        System.out.println("'e' for east, 'n' for north, etc.");
+    }
+
     // runs the game
     public void run() {
         boolean run = true;
-        Sound.startMenuSound();
+        // Sound.startMenuSound();
         System.out.println("""
                 ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
@@ -44,17 +55,7 @@ public class UserInterface {
                     adventure.exit();
                     run = false;
                 }
-                case "help" -> {
-                    System.out.println("EXIT    Exits the game.");
-                    System.out.println("LOOK    Looks around the room.");
-                    System.out.println("TAKE    Tries to take an item from the room.");
-                    System.out.println("DROP    Tries to drop an item from your inventory.");
-                    System.out.println("XYZZY   Magically transports you backwards through time.");
-                    System.out.println("HELP    Shows this message.");
-                    System.out.println("I       Shows your inventory.");
-                    System.out.println("Move around the rooms by typing");
-                    System.out.println("'e' for east, 'n' for north, etc.");
-                }
+                case "help" -> helpMessage();
                 case "look" -> System.out.println(adventure.look());
                 case "xyzzy" -> System.out.println(adventure.xyzzy());
                 case "take" -> {
@@ -71,12 +72,31 @@ public class UserInterface {
 
                     }
                 }
+                case "equip" -> {
+                    switch (adventure.equip(choice)) {
+                        case OK -> System.out.println("You have equipped the " + choice + ".");
+                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+                        case CANT -> System.out.println("You can't equip " + choice + ".");
+                    }
+                }
+                case "unequip" -> {
+                    switch(adventure.unequip(choice)) {
+                        case OK -> System.out.println("You have unequipped the " + choice + ".");
+                        case CANT -> System.out.println("You don't have the " + choice + " equipped.");
+                    }
+                }
+                case "attack" -> {
+                    System.out.println(adventure.attack(choice));
+                }
                 case "inventory", "i" -> {
                     if (adventure.getInventory().isEmpty()) {
                         System.out.println("Your inventory is empty.");
+                        System.out.println(adventure.showEquippedWeapon());
+
                     } else {
                         System.out.println("Your inventory:");
                         System.out.println(adventure.showInventory());
+                        System.out.println(adventure.showEquippedWeapon());
                     }
                 }
                 case "health", "hp", "h" -> {
@@ -86,11 +106,11 @@ public class UserInterface {
                         System.out.println("You are at max health.");
                     } else if (health >= 75) {
                         System.out.println("You are pretty healthy.");
-                    } else if (health >= 50 && health < 75) {
+                    } else if (health >= 50) {
                         System.out.println("You are kinda alright.");
-                    } else if (health >= 25 && health < 50) {
+                    } else if (health >= 25) {
                         System.out.println("You kinda dying.");
-                    } else if (health >= 1 && health < 25) {
+                    } else if (health >= 1) {
                         System.out.println("You as good as dead.");
                     }
                 }
@@ -113,7 +133,7 @@ public class UserInterface {
 
                         }
                         case POISON -> {
-                            System.out.println("This is probably not a good choice.");
+                            System.out.println("This is probably not a good idea.");
                             System.out.println("Are you sure you want to eat it?");
                             String comm = input.nextLine().toLowerCase();
                             if (adventure.poisonCheck(comm)) {
@@ -122,8 +142,6 @@ public class UserInterface {
                             } else System.out.println("Wise choice.");
 
                         } case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
-
-
                     }
                 }
                 default -> adventure.move(command);

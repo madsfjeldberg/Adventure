@@ -1,8 +1,7 @@
-public class Food extends Item {
+public class MeleeWeapon extends Weapon {
 
-    public Food(String name, String shortName, String description, int value) {
+    public MeleeWeapon(String name, String shortName, String description, int value) {
         super(name, shortName, description, value);
-        this.value = value;
     }
 
     public int getValue() {

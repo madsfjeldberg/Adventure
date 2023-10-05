@@ -1,15 +1,20 @@
 public class Item {
 
+    // TODO: gør item abstract
+
     protected final String name;
     protected final String shortName;
     protected final String description;
-    protected final String type; // Weapon eller food
+    protected int value;
+    protected int ammo;
 
-    public Item(String name, String shortName, String description, String type) {
+    public Item(String name, String shortName, String description, int value) {
         this.name = name;
         this.shortName = shortName;
         this.description = description;
-        this.type = type;
+        this.value = value;
+        this.ammo = 0;
+
     }
 
     public String getName() {
@@ -20,17 +25,26 @@ public class Item {
         return shortName;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public String getType() {
-        return type;
+    public int getAmmo() {
+        return 0;
+    }
+
+    public int setAmmo(int ammo) {
+        this.ammo = ammo;
+        return this.ammo;
     }
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nType: " + type + "\nDescription: \"" + description + "\"\n";
+        return "Name: " + name + "\nDescription: \"" + description + "\"\n";
     }
 
 }

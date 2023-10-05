@@ -21,17 +21,26 @@ public class Room {
         this.items = new ArrayList<>();
     }
 
+    /*
+    public void addItem(String name, String shortName, String description) {
+        this.items.add(new Item(name, shortName, description));
+    }
+    */
 
-    public void addItem(String name, String shortName, String description, String ability) {
-        this.items.add(new Item(name, shortName, description, ability));
+    public void addFood(String name, String shortName, String description, int value) {
+        this.items.add(new Food(name, shortName, description, value));
     }
 
-    public void addFood(String name, String shortName, String description, String ability, int value) {
-        this.items.add(new Food(name, shortName, description, ability, value));
+    public void addLiquid(String name, String shortName, String description, int value) {
+        this.items.add(new Liquid(name, shortName, description, value));
     }
 
-    public void addLiquid(String name, String shortName, String description, String ability, int value) {
-        this.items.add(new Liquid(name, shortName, description, ability, value));
+    public void addMeleeWeapon(String name, String shortName, String description, int value) {
+        this.items.add(new Weapon(name, shortName, description, value));
+    }
+
+    public void addRangedWeapon(String name, String shortName, String description, int value, int ammo) {
+        this.items.add(new RangedWeapon(name, shortName, description, value, ammo));
     }
 
     public ArrayList<Item> getItems() {

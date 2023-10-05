@@ -11,7 +11,6 @@ public class PlayerTest {
     void setUp() {
         room = new Room("Test Room", "Long description of the room.", "Short description.");
         player = new Player(room);
-
     }
 
     @Test

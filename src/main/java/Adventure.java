@@ -24,6 +24,10 @@ public class Adventure {
         return player.showInventory();
     }
 
+    public String showEquippedWeapon() {
+        return player.showEquippedWeapon();
+    }
+
     public int health() {
         return player.getHealth();
     }
@@ -42,6 +46,18 @@ public class Adventure {
     // smider en ting i rummet fra inventory
     public ReturnValue drop(String command) {
         return player.dropItem(command);
+    }
+
+    public ReturnValue equip(String command) {
+        return player.equipWeapon(command);
+    }
+
+    public ReturnValue unequip(String command) {
+        return player.unequip(command);
+    }
+
+    public String attack(String command) {
+        return player.attack(command);
     }
 
     // spiser et Food item

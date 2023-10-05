@@ -1,18 +1,18 @@
 public class Liquid extends Item {
 
-    private final int value;
 
-    public Liquid(String name, String shortName, String description, String type, int value) {
-        super(name, shortName, description, type);
+
+    public Liquid(String name, String shortName, String description, int value) {
+        super(name, shortName, description, value);
         this.value = value;
     }
 
     public int getValue() {
-        return value;
+        return super.getValue();
     }
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nType: " + type + "\nDescription: \"" + description + "\nValue: " + value + "\n";
+        return "Name: " + name + "\nDescription: \"" + description + "\nValue: " + value + "\n";
     }
 }
