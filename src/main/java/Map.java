@@ -47,8 +47,9 @@ public class Map {
         room7.addRangedWeapon("Wand of Fire", "wand", "Probably gonna get you in trouble.", 20, 3); // ranged
         room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", 5);
         room2.addFood("Rotten banana", "banana", "its turned black.", -10);
-        room1.addLiquid("Water", "water", "It's water.", 5);
-        room2.addLiquid("Mud", "mud", "It's mud.", -5);
+        room1.addLiquid("Clear Water", "water", "It's water.", 5);
+        room2.addLiquid("Purple Potion", "potion", "It's a mysterius liquid.", -20);
+        room2.addLiquid("Health Potion", "healthpotion", "It's a mysterious liquid.", 20);
 
     }
 

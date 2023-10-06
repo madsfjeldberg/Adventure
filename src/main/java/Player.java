@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -150,6 +152,7 @@ public class Player {
         if (command.equals("yes")) {
             setHealth(100);
             inventory.remove(heldFood);
+            inventory.remove(heldLiquid);
             return true;
         } else if (command.equals("no")) {
             return false;
@@ -159,21 +162,31 @@ public class Player {
 
     public boolean poisonCheck(String command) {
         if (command.equals("yes")) {
-            setHealth(getHealth() + heldFood.getValue());
-            inventory.remove(heldFood);
-            return true;
+            if (heldFood != null) {
+                setHealth(getHealth() + heldFood.getValue());
+                inventory.remove(heldFood);
+                return true;
+            } else if (heldLiquid != null) {
+                setHealth(getHealth() + heldLiquid.getValue());
+                inventory.remove(heldLiquid);
+                return true;
+            } else {
+                System.out.println("Nothing to consume.");
+            }
         } else if (command.equals("no")) {
             return false;
-        } else System.out.println("Invalid input.");
+        } else {
+            System.out.println("Invalid input.");
+        }
         return false;
     }
 
     // TODO lav "consumeItem" funktion
     // spise funktion
-    public ReturnValue eatItem(String name) {
+    public ReturnValue eatItem(String command) {
         heldFood = null;
         for (Item i : getInventory()) {
-            if (i.getName().equals(name) || i.getShortName().equals(name)) {
+            if (i.getName().equals(command) || i.getShortName().equals(command)) {
                 if (i instanceof Food) {
                     int newHealth = getHealth() + i.getValue();
                     if (newHealth > 100) {
@@ -193,7 +206,9 @@ public class Player {
         return ReturnValue.NOT_FOUND;
     }
 
+    // hvis man har fuld liv men drikker stadig fjerne den ikke itemet
     public ReturnValue drinkItem(String command) {
+        heldLiquid = null;
         for (Item i : getInventory()) {
             if (i.getName().equals(command) || i.getShortName().equals(command)) {
                 if (i instanceof Liquid) {
@@ -211,9 +226,9 @@ public class Player {
                     }
                 } else return ReturnValue.CANT;
             }
+        }
         return ReturnValue.NOT_FOUND;
     }
-
 
 
     // checker om du er i det sidste rum
@@ -246,4 +261,6 @@ public class Player {
             default -> System.out.println("Invalid input. Try again.");
         }
     }
+
+
 }
