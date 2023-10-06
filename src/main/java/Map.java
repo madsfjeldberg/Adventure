@@ -39,13 +39,13 @@ public class Map {
 
         room1.addMeleeWeapon("Small dagger", "dagger", "Slightly rusted but still sharp.", 10);
         room1.addMeleeWeapon("Baseball bat", "bat", "rart at ha", 20);
-        room1.addRangedWeapon("Bow", "bow", "Old, but shoots straight.", 10, 2);
+        room1.addRangedWeapon("Bow", "bow", "Old but shoots straight.", 10, 2);
         room4.addRangedWeapon("Enchanted book", "book", "Emanates with arcane magic.", 50, 1); // ranged
         room3.addMeleeWeapon("Rusty Hook", "hook", "Stained with old, dried blood.", 3);
         room4.addFood("Half-eaten apple", "apple", "please don't eat this.", -10);
         room6.addFood("Delicious lasagna", "lasagna", "Looks absolutely delicious.", 20);
         room7.addRangedWeapon("Wand of Fire", "wand", "Probably gonna get you in trouble.", 20, 3); // ranged
-        room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in. \n ...Probably still good though.", 5);
+        room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in.\n...Probably still good though.", 5);
         room2.addFood("Rotten banana", "banana", "its turned black.", -10);
         room1.addLiquid("Clear Water", "water", "It's water.", 5);
         room2.addLiquid("Purple Potion", "potion", "It's a mysterius liquid.", -20);

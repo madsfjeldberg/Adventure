@@ -37,6 +37,7 @@ public class Player {
 
     }
 
+    // viser nuværende equipped våben
     public String showEquippedWeapon() {
         if (currentWeapon != null) {
 
@@ -71,6 +72,8 @@ public class Player {
     }
 
     // TODO fjern 'instanceof'
+    // TODO måske currentWeapon.attack(); ?
+    // angriber en fjende, lige nu ingenting
     public String attack(String name) {
         if (currentWeapon == null) {
             return "You don't have a weapon equipped.";
@@ -121,6 +124,7 @@ public class Player {
     }
 
     // TODO: fjern 'instanceof'
+    // flytter våben fra inventory til currentWeapon
     public ReturnValue equipWeapon(String name) {
         for (Item i : getInventory()) {
             if (i.getName().equals(name) || i.getShortName().equals(name)) {
@@ -137,7 +141,7 @@ public class Player {
         } return ReturnValue.NOT_FOUND;
     }
 
-
+    // flytter våben fra currentWeapon og placerer i inventory
     public ReturnValue unequip(String name) {
         if (currentWeapon == null) {
             return ReturnValue.CANT;
@@ -175,13 +179,10 @@ public class Player {
             }
         } else if (command.equals("no")) {
             return false;
-        } else {
-            System.out.println("Invalid input.");
-        }
+        } else System.out.println("Invalid input.");
         return false;
     }
 
-    // TODO lav "consumeItem" funktion
     // spise funktion
     public ReturnValue eatItem(String command) {
         heldFood = null;
@@ -206,7 +207,6 @@ public class Player {
         return ReturnValue.NOT_FOUND;
     }
 
-    // hvis man har fuld liv men drikker stadig fjerne den ikke itemet
     public ReturnValue drinkItem(String command) {
         heldLiquid = null;
         for (Item i : getInventory()) {
@@ -226,10 +226,8 @@ public class Player {
                     }
                 } else return ReturnValue.CANT;
             }
-        }
         return ReturnValue.NOT_FOUND;
     }
-
 
     // checker om du er i det sidste rum
     public void wincheck() {
@@ -261,6 +259,4 @@ public class Player {
             default -> System.out.println("Invalid input. Try again.");
         }
     }
-
-
 }

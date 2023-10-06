@@ -11,6 +11,7 @@ public class UserInterface {
     }
 
     public void welcomeMessage() {
+        System.out.println("─".repeat(100));
         System.out.println("Welcome to the adventure!");
         System.out.println("Type 'help' to get started.");
         System.out.println("Type 'exit' to end the game.");
@@ -18,15 +19,17 @@ public class UserInterface {
     }
 
     public void helpMessage() {
-        System.out.println("EXIT    Exits the game.");
-        System.out.println("LOOK    Looks around the room.");
-        System.out.println("TAKE    Tries to take an item from the room.");
-        System.out.println("DROP    Tries to drop an item from your inventory.");
-        System.out.println("XYZZY   Magically transports you backwards through time.");
-        System.out.println("HELP    Shows this message.");
-        System.out.println("I       Shows your inventory.");
-        System.out.println("Move around the rooms by typing");
-        System.out.println("'e' for east, 'n' for north, etc.");
+        System.out.println("EXIT           Exits the game.");
+        System.out.println("LOOK           Looks around the room.");
+        System.out.println("TAKE           Tries to take an item from the room.");
+        System.out.println("DROP           Tries to drop an item from your inventory.");
+        System.out.println("XYZZY          Magically transports you backwards through time.");
+        System.out.println("HELP           Shows this message.");
+        System.out.println("INVENTORY/I    Shows your inventory.");
+        System.out.println("EQUIP          Equips an item from your inventory.");
+        System.out.println("UNEQUIP        Unequips an item from your inventory.");
+        System.out.println("ATTACK         attacks an enemy in the room.");
+        System.out.println("Move around the rooms by typing 'e' for east, 'n' for north, etc.");
     }
 
     // runs the game
@@ -37,13 +40,11 @@ public class UserInterface {
                 ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
-        System.out.println("─".repeat(100));
         welcomeMessage();
         // adventure.startMenuSound();
         while (run) {
-            System.out.println();
-            System.out.print("What do you do?");
-            System.out.print("> ");
+
+            System.out.print("What do you do? > ");
             String userInput = input.nextLine().toLowerCase();
             String[] inputSplit = userInput.split(" ");
             String command = inputSplit[0];
@@ -85,9 +86,7 @@ public class UserInterface {
                         case CANT -> System.out.println("You don't have the " + choice + " equipped.");
                     }
                 }
-                case "attack" -> {
-                    System.out.println(adventure.attack(choice));
-                }
+                case "attack" -> System.out.println(adventure.attack(choice));
                 case "inventory", "i" -> {
                     if (adventure.getInventory().isEmpty()) {
                         System.out.println("Your inventory is empty.");
@@ -144,7 +143,6 @@ public class UserInterface {
                         } case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
                     }
                 }
-                default -> adventure.move(command);
                 case "drink" -> {
                     switch (adventure.drink(choice)) {
                         case OK -> {
@@ -174,13 +172,11 @@ public class UserInterface {
 
                         }
                         case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
-
-
                     }
-                    adventure.wincheck();
                 }
-
+                default -> adventure.move(command);
             }
+            adventure.wincheck();
         }
     }
 }

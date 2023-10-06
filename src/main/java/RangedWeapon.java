@@ -14,14 +14,13 @@ public class RangedWeapon extends Weapon{
         return ammo;
     }
 
-    public int setAmmo(int ammo) {
+    public void setAmmo(int ammo) {
         this.ammo = ammo;
-        return this.ammo;
     }
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nDescription: \"" + description + "\nValue: " + value + "\n" + "Ammo: " + ammo + "\n";
+        return "Name: " + name + "\nDescription: \"" + description + "\"\nValue: " + value + "\n" + "Ammo: " + ammo + "\n";
     }
 
 }

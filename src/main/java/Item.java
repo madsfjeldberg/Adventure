@@ -29,17 +29,12 @@ public class Item {
         return value;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public int getAmmo() {
         return 0;
     }
 
-    public int setAmmo(int ammo) {
+    public void setAmmo(int ammo) {
         this.ammo = ammo;
-        return this.ammo;
     }
 
     @Override
