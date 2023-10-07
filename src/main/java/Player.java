@@ -209,7 +209,7 @@ public class Player {
 
     public ReturnValue drinkItem(String command) {
         heldLiquid = null;
-        for (Item i : getInventory()) {
+        for (Item i : getInventory())
             if (i.getName().equals(command) || i.getShortName().equals(command)) {
                 if (i instanceof Liquid) {
                     int newHealth = getHealth() + i.getValue();
