@@ -34,13 +34,11 @@ public class Player {
     // fjerner [] og , når man printer Arraylist
     public String showInventory() {
         return Arrays.toString(inventory.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
-
     }
 
     // viser nuværende equipped våben
     public String showEquippedWeapon() {
         if (currentWeapon != null) {
-
             return "Your weapon: \n" + currentWeapon;
         } else {
             return "No weapon equipped.";
@@ -95,9 +93,7 @@ public class Player {
             currentRoom.setVisited();
             System.out.print(currentRoom.getName());
             System.out.println(currentRoom.longdesc());
-        } else {
-            System.out.println(currentRoom.shortdesc());
-        }
+        } else System.out.println(currentRoom.shortdesc());
     }
 
     // forsøger at flytte et item til inventory

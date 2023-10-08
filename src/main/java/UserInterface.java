@@ -64,13 +64,11 @@ public class UserInterface {
                         case OK -> System.out.println("You have taken the " + choice + ".");
                         case NOT_FOUND -> System.out.println("There's no " + choice + " here.");
                     }
-
                 }
                 case "drop" -> {
                     switch (adventure.drop(choice)) {
                         case OK -> System.out.println("You have dropped the " + choice + ".");
                         case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
-
                     }
                 }
                 case "equip" -> {
@@ -129,7 +127,6 @@ public class UserInterface {
                                 System.out.println("You have eaten the " + choice + ".");
                                 System.out.println("Your health is now " + adventure.health());
                             } else System.out.println("Wise choice.");
-
                         }
                         case POISON -> {
                             System.out.println("This is probably not a good idea.");
@@ -139,7 +136,6 @@ public class UserInterface {
                                 System.out.println("You have eaten the " + choice + ".");
                                 System.out.println("Your health is now " + adventure.health());
                             } else System.out.println("Wise choice.");
-
                         } case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
                     }
                 }
@@ -159,7 +155,6 @@ public class UserInterface {
                                 System.out.println("You have drunk the " + choice + ".");
                                 System.out.println("Your health is now " + adventure.health());
                             } else System.out.println("Wise choice.");
-
                         }
                         case POISON -> {
                             System.out.println("This is probably not a good choice.");
@@ -169,7 +164,6 @@ public class UserInterface {
                                 System.out.println("You have drunk the " + choice + ".");
                                 System.out.println("Your health is now " + adventure.health());
                             } else System.out.println("Wise choice.");
-
                         }
                         case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
                     }

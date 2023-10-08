@@ -14,7 +14,6 @@ public class Item {
         this.description = description;
         this.value = value;
         this.ammo = 0;
-
     }
 
     public String getName() {
