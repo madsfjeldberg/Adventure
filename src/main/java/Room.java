@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,6 +13,7 @@ public class Room {
     private Room south = null;
     private Room west = null;
     ArrayList<Item> items;
+    ArrayList<Enemy> enemies;
 
     public Room(String name, String longDescription, String shortDescription) {
         this.name = name;
@@ -42,6 +44,18 @@ public class Room {
 
     public void addRangedWeapon(String name, String shortName, String description, int value, int ammo) {
         this.items.add(new RangedWeapon(name, shortName, description, value, ammo));
+    }
+
+    public void addEnemy(int health, Weapon weapon, String name) {
+        this.enemies.add(new Enemy(health, weapon, name));
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return this.enemies;
+    }
+
+    public String showEnemies() {
+        return Arrays.toString(enemies.toArray()).replace("[", "").replace("]", "").replace(", ", "\n");
     }
 
     public ArrayList<Item> getItems() {

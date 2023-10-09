@@ -11,6 +11,7 @@ public class Enemy {
         this.health = health;
         this.weapon = weapon;
         this.name = name;
+
     }
     public String getName(){
         return name;

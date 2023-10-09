@@ -103,7 +103,8 @@ public class Player {
                 currentRoom.getItems().remove(item);
                 return ReturnValue.OK;
             }
-        } return ReturnValue.NOT_FOUND;
+        }
+        return ReturnValue.NOT_FOUND;
     }
 
     // forsøger at flytte et item fra inventory til currentRoom
@@ -114,7 +115,8 @@ public class Player {
                 currentRoom.getItems().add(i);
                 return ReturnValue.OK;
             }
-        } return ReturnValue.NOT_FOUND;
+        }
+        return ReturnValue.NOT_FOUND;
     }
 
     // TODO: fjern 'instanceof'
@@ -132,7 +134,8 @@ public class Player {
                     return ReturnValue.OK;
                 } else return ReturnValue.CANT;
             }
-        } return ReturnValue.NOT_FOUND;
+        }
+        return ReturnValue.NOT_FOUND;
     }
 
     public AttackValue attack(String name) {

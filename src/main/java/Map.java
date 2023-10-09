@@ -52,6 +52,7 @@ public class Map {
         room1.addLiquid("Clear Water", "water", "It's water.", 5);
         room2.addLiquid("Purple Potion", "purple potion", "It's a mysterious liquid.", -20);
         room2.addLiquid("Health Potion", "health potion", "It's a mysterious liquid.", 20);
+        room1.addEnemy(10, sword , "Goblin");
 
     }
 

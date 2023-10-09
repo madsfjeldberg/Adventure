@@ -44,7 +44,7 @@ public class UserInterface {
         // adventure.startMenuSound();
         while (run) {
 
-            System.out.print("What do you do? > ");
+            System.out.print("\nWhat do you do? > ");
             String userInput = input.nextLine().toLowerCase();
             String[] inputSplit = userInput.split(" ");
             String command = inputSplit[0];
@@ -186,10 +186,13 @@ public class UserInterface {
                         }
                         case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
                     }
+
                 }
                 case "go" -> adventure.move(choice);
                 default -> adventure.move(command);
             }
+
+
             adventure.wincheck();
         }
     }
