@@ -69,23 +69,6 @@ public class Player {
         }
     }
 
-    // TODO fjern 'instanceof'
-    // TODO måske currentWeapon.attack(); ?
-    // angriber en fjende, lige nu ingenting
-    public String attack(String name) {
-        if (currentWeapon == null) {
-            return "You don't have a weapon equipped.";
-        } else if (currentWeapon instanceof RangedWeapon) {
-            if (currentWeapon.getAmmo() == 0) {
-                return "You don't have any ammo left.";
-            }
-            currentWeapon.setAmmo(currentWeapon.getAmmo() - 1);
-            return "You fire at the monster for " + currentWeapon.getValue() + " damage.";
-        } else if (currentWeapon instanceof Weapon) {
-            return "You attack the monster for " + currentWeapon.getValue() + " damage.";
-        }return "You can't attack that.";
-    }
-
     // viser lang beskrivelse, hvis rummet ikke er blevet besøgt,
     // kort beskrivelse hvis det allerede er blevet besøgt
     public void showDescription() {
@@ -135,6 +118,24 @@ public class Player {
                 } else return ReturnValue.CANT;
             }
         } return ReturnValue.NOT_FOUND;
+    }
+
+    // TODO fjern 'instanceof'
+    // TODO måske currentWeapon.attack(); ?
+    // angriber en fjende, lige nu ingenting
+    public String attack(String name) {
+        if (currentWeapon == null) {
+            return "You don't have a weapon equipped.";
+        } else if (currentWeapon instanceof RangedWeapon) {
+            if (currentWeapon.getAmmo() == 0) {
+                return "You don't have any ammo left.";
+            } else {
+            currentWeapon.setAmmo(currentWeapon.getAmmo() - 1);
+            return "You fire at the monster for " + currentWeapon.getValue() + " damage.";
+            }
+        } else if (currentWeapon instanceof MeleeWeapon) {
+            return "You attack the monster for " + currentWeapon.getValue() + " damage.";
+        }return "You can't attack that.";
     }
 
     // flytter våben fra currentWeapon og placerer i inventory

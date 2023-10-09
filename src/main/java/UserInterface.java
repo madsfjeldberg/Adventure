@@ -168,6 +168,7 @@ public class UserInterface {
                         case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
                     }
                 }
+                case "go" -> adventure.move(choice);
                 default -> adventure.move(command);
             }
             adventure.wincheck();
