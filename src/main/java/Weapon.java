@@ -19,6 +19,9 @@ public class Weapon extends Item {
         this.ammo = ammo;
     }
 
+    public int attack() {
+        return value;
+    }
 
 
     @Override

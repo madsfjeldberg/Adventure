@@ -35,7 +35,6 @@ public class Adventure {
     // move metode, flytter 'player' til nyt rum
     public void move(String command) {
         player.move(command);
-
     }
 
     // tager en ting fra rummet hvis den eksisterer

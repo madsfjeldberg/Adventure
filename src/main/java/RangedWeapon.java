@@ -18,6 +18,15 @@ public class RangedWeapon extends Weapon{
         this.ammo = ammo;
     }
 
+    public int attack() {
+        if (ammo == 0) {
+            return 0;
+        } else {
+            ammo -= 1;
+            return value;
+        }
+    }
+
     @Override
     public String toString() {
         return "Name: " + name + "\nDescription: \"" + description + "\"\nValue: " + value + "\n" + "Ammo: " + ammo + "\n";
