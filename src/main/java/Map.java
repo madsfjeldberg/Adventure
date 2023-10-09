@@ -48,8 +48,8 @@ public class Map {
         room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in.\n...Probably still good though.", 5);
         room2.addFood("Rotten banana", "banana", "its turned black.", -10);
         room1.addLiquid("Clear Water", "water", "It's water.", 5);
-        room2.addLiquid("Purple Potion", "potion", "It's a mysterius liquid.", -20);
-        room2.addLiquid("Health Potion", "healthpotion", "It's a mysterious liquid.", 20);
+        room2.addLiquid("Purple Potion", "purple potion", "It's a mysterious liquid.", -20);
+        room2.addLiquid("Health Potion", "health potion", "It's a mysterious liquid.", 20);
 
     }
 

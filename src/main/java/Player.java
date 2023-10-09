@@ -27,6 +27,10 @@ public class Player {
         return health;
     }
 
+    public void takeDamage(int damage) {
+        health -= damage;
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
@@ -127,7 +131,7 @@ public class Player {
         if (currentWeapon == null) {
             return "You don't have a weapon equipped.";
         } else if (currentWeapon instanceof RangedWeapon) {
-            if (currentWeapon.getAmmo() == 0) {
+            if (currentWeapon.attack() == 0) {
                 return "You don't have any ammo left.";
             } else {
             currentWeapon.setAmmo(currentWeapon.getAmmo() - 1);
@@ -136,6 +140,36 @@ public class Player {
         } else if (currentWeapon instanceof MeleeWeapon) {
             return "You attack the monster for " + currentWeapon.getValue() + " damage.";
         }return "You can't attack that.";
+    }
+
+    public String attack2(String name) {
+        if (currentWeapon == null) {
+            return "You don't have a weapon equipped.";
+        } else if (currentWeapon.attack() == 0) {
+            return "You don't have any ammo left.";
+        } else if (currentRoom.getEnemies.isempty()) {
+            return "There are no enemies here.";
+        }
+        for (Enemy enemy : currentRoom.getEnemies()) {
+            if (enemy.getName().equals(name)) {
+                enemy.takeDamage(currentWeapon.attack());
+
+                if (enemy.getHealth() <= 0) {
+                    currentRoom.getItems().add(enemy.getWeapon());
+                    currentRoom.remove(enemy);
+                    return "Enemy is dead.";
+
+                    break;
+                } else {
+                    takeDamage(enemy.getWeapon());
+                    if (health <= 0) {
+                        return "You are dead.";
+                        System.exit(0);
+                    }
+                }
+            }
+        }
+
     }
 
     // flytter våben fra currentWeapon og placerer i inventory
