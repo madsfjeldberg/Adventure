@@ -1,10 +1,13 @@
+import java.util.ArrayList;
+
 public class Enemy {
     private int health;
-    private int weapon;
-    private String name;
+    private Weapon weapon;
+    private final String name;
 
 
-    public Enemy(int health, int weapon, String name) {
+
+    public Enemy(int health, Weapon weapon, String name) {
         this.health = health;
         this.weapon = weapon;
         this.name = name;
@@ -16,10 +19,19 @@ public class Enemy {
         return health;
     }
 
-    public int getWeapon(){
+    public Weapon getWeapon(){
         return weapon;
     }
 
+    public int getDamage() {
+        return weapon.attack();
+    }
 
+    public void takeDamage(int damage) {
+        this.health = this.health - damage;
+    }
 
+    public String toString() {
+        return "Enemy: " + name + " \nHealth: " + health;
+    }
 }

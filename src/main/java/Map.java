@@ -37,6 +37,8 @@ public class Map {
 
         startingRoom = room1;
 
+        Weapon sword = new Weapon("Sword", "sword", "issa sword", 10);
+
         room1.addMeleeWeapon("Small dagger", "dagger", "Slightly rusted but still sharp.", 10);
         room1.addMeleeWeapon("Baseball bat", "bat", "rart at ha", 20);
         room1.addRangedWeapon("Bow", "bow", "Old but shoots straight.", 10, 2);

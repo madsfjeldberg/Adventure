@@ -84,7 +84,26 @@ public class UserInterface {
                         case CANT -> System.out.println("You don't have the " + choice + " equipped.");
                     }
                 }
-                case "attack" -> System.out.println(adventure.attack(choice));
+                case "attack" -> {
+                    switch (adventure.attack(choice)) {
+                        case NO_EQUIP -> System.out.println("You don't have a weapon equipped.");
+                        case NO_AMMO -> System.out.println("You don't have any ammo.");
+                        case NO_ENEMY -> System.out.println("There's no enemy here.");
+                        case MONSTER_DEAD -> {
+                            System.out.printf("You attack the monster for %d damage.", adventure.getWeaponDamage());
+                            System.out.printf("Monster loses", adventure.getWeaponDamage() + "health");
+                            System.out.println("The monster is dead!");
+                        }
+                        case PLAYER_DEAD -> {
+                            System.out.printf("The monster attacks you for %d damage.", adventure.getEnemyDamage());
+                            System.out.println("You are dead!");
+                            adventure.exit();
+                        }
+                        case SUCCESS -> {
+                            System.out.printf("Your attack hits the monster for %d.\nThe monster hits you for %d damage.", adventure.getWeaponDamage(), adventure.getEnemyDamage());
+                        }
+                    }
+                }
                 case "inventory", "i" -> {
                     if (adventure.getInventory().isEmpty()) {
                         System.out.println("Your inventory is empty.");

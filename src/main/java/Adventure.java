@@ -19,6 +19,14 @@ public class Adventure {
         return player.poisonCheck(command);
     }
 
+    public int getWeaponDamage() {
+        return player.getWeaponDamage();
+    }
+
+    public int getEnemyDamage() {
+        return player.getEnemyDamage();
+    }
+
     // viser inventory
     public String showInventory() {
         return player.showInventory();
@@ -55,7 +63,7 @@ public class Adventure {
         return player.unequip(command);
     }
 
-    public String attack(String command) {
+    public AttackValue attack(String command) {
         return player.attack(command);
     }
 

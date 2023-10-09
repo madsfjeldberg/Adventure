@@ -19,6 +19,7 @@ public class Room {
         this.shortDescription = shortDescription;
         this.isVisited = false;
         this.items = new ArrayList<>();
+        this.enemies = new ArrayList<>();
     }
 
     /*
