@@ -92,15 +92,14 @@ public class UserInterface {
                         case NO_ENEMY -> System.out.println("There's no enemy here.");
                         case MONSTER_DEAD -> {
                             System.out.printf("You attack the %s for %d damage.\n",choice, adventure.getWeaponDamage());
-                            System.out.printf("The %s loses %d health.\n",choice, adventure.getWeaponDamage());
-                            System.out.printf("The %s is dead!\n",choice);
+                            System.out.printf("You have defeated the %s!\n",choice);
                         }
                         case PLAYER_DEAD -> {
                             System.out.printf("The %s attacks you for %d damage.\n",choice, adventure.getEnemyDamage());
                             System.out.println("You are dead!");
                             adventure.exit();
                         }
-                        case SUCCESS -> System.out.printf("Your attack hits the %s for %d.\nThe %s hits you for %d damage.",choice, adventure.getWeaponDamage(),choice, adventure.getEnemyDamage());
+                        case SUCCESS -> System.out.printf("You attack the %s for %d damage.\nThe %s hits you for %d damage.",choice, adventure.getWeaponDamage(),choice, adventure.getEnemyDamage());
                     }
                 }
                 case "inventory", "i" -> {
@@ -187,6 +186,14 @@ public class UserInterface {
                     }
 
                 }
+                case "unlock", "open" -> {
+                    switch (adventure.unlock()) {
+                        case OK -> System.out.println("You unlock the door.");
+                        case NO_ROOM -> System.out.println("There's no door to unlock here.");
+                        case NO_KEY -> System.out.println("You don't have a key.");
+                    }
+                }
+
                 case "go" -> adventure.move(choice);
                 default -> adventure.move(command);
             }

@@ -85,6 +85,10 @@ public class Adventure {
         return player.getInventory();
     }
 
+    public ReturnValue unlock() {
+        return player.unlock();
+    }
+
     // tp metode
     public String xyzzy() {
         return player.xyzzy();

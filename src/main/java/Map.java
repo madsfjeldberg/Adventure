@@ -41,6 +41,9 @@ public class Map {
         Weapon axe = new Weapon("Axe", "axe", "issa axe", 25);
         Weapon spear = new Weapon("Spear", "spear", "issa spear", 20);
 
+        room5.lock();
+
+        room9.addKeyItem("Skeleton Key", "key", "Ancient. Probably important.", 1);
         room1.addMeleeWeapon("Small dagger", "dagger", "Slightly rusted but still sharp.", 10);
         room1.addMeleeWeapon("Baseball bat", "bat", "rart at ha", 20);
         room1.addRangedWeapon("Bow", "bow", "Old but shoots straight.", 10, 2);
@@ -54,7 +57,7 @@ public class Map {
         room1.addLiquid("Clear Water", "water", "It's water.", 5);
         room2.addLiquid("Purple Poison", "poison", "It's a mysterious liquid.", -20);
         room2.addLiquid("Health Potion", "potion", "It's a mysterious liquid.", 20);
-        room1.addEnemy("Goblin", 20, sword);
+        room2.addEnemy("Goblin", 20, sword);
         room8.addEnemy("Minotaur", 50, axe);
         room4.addEnemy("Hollow Knight", 30, spear);
 

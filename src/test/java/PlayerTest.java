@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
@@ -15,8 +14,7 @@ public class PlayerTest {
         player.getCurrentRoom().addMeleeWeapon("Weapon", "weapon", "issa weapon", 10);
         player.getCurrentRoom().addRangedWeapon("Bow_no_ammo", "bow_no_ammo", "test", 10, 0);
         Weapon test = new Weapon("Test", "test", "test", 10);
-        player.getCurrentRoom().addEnemy("Test20HP", 20, test);
-
+        player.getCurrentRoom().addFood("Banan", "banan", "banan", -10);
     }
 
     @Test
@@ -42,6 +40,13 @@ public class PlayerTest {
     @Test
     public void move_north_from_starting_room() {
         assertNull(player.getCurrentRoom().getNorth());
+    }
+
+    @Test
+    public void monster_blocking() {
+        Weapon test = new Weapon("test", "test", "test", 10);
+        player.getCurrentRoom().addEnemy("test", 10, test);
+        assertEquals(ReturnValue.ENEMY_BLOCKING, player.moveToRoom(player.getCurrentRoom().getEast()));
     }
 
 
@@ -132,6 +137,8 @@ public class PlayerTest {
 
     @Test
     public void attack_enemy() {
+        Weapon test = new Weapon("Test", "test", "test", 20);
+        player.getCurrentRoom().addEnemy("Test20HP", 20, test);
         player.takeItem("weapon");
         player.equipWeapon("weapon");
         assertEquals(AttackValue.SUCCESS, player.attack("test20hp"));
@@ -158,7 +165,7 @@ public class PlayerTest {
     @Test
     public void poison_check() {
         player.setHealth(90);
-        player.takeItem("rotten banana");
-        assertEquals(ReturnValue.POISON, player.eatItem("banana"));
+        player.takeItem("banan");
+        assertEquals(ReturnValue.POISON, player.eatItem("banan"));
     }
 }

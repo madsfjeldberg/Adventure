@@ -14,6 +14,7 @@ public class Room {
     private Room west = null;
     ArrayList<Item> items;
     ArrayList<Enemy> enemies;
+    private boolean isLocked;
 
     public Room(String name, String longDescription, String shortDescription) {
         this.name = name;
@@ -22,6 +23,24 @@ public class Room {
         this.isVisited = false;
         this.items = new ArrayList<>();
         this.enemies = new ArrayList<>();
+        this.isLocked = false;
+    }
+
+    public boolean getIsLocked() {
+        return this.isLocked;
+    }
+
+    public void lock() {
+        this.isLocked = true;
+    }
+
+    public void unlock() {
+        if (this.isLocked) {
+            this.isLocked = false;
+        }
+    }
+    public void addKeyItem(String name, String shortName, String description, int value) {
+        this.items.add(new KeyItem(name, shortName, description, value));
     }
 
     public void addFood(String name, String shortName, String description, int value) {
@@ -42,6 +61,10 @@ public class Room {
 
     public void addEnemy(String name, int health, Weapon weapon) {
         this.enemies.add(new Enemy(name, health, weapon));
+    }
+
+    public void addEnemyTest(Enemy enemy) {
+        this.enemies.add(enemy);
     }
 
     public ArrayList<Enemy> getEnemies() {

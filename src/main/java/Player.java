@@ -4,12 +4,14 @@ import java.util.Arrays;
 public class Player {
 
     private Room currentRoom;
+    private Room lastRoom;
     private Room xyzzyRoom;
     ArrayList<Item> inventory;
     private int health;
     private Item heldFood;
     private Liquid heldLiquid;
     private Weapon currentWeapon;
+    private boolean enemyInRoom;
 
     public Player(Room currentRoom) {
         this.xyzzyRoom = currentRoom;
@@ -19,6 +21,8 @@ public class Player {
         heldFood = null;
         heldLiquid = null;
         currentWeapon = null;
+        enemyInRoom = false;
+        this.lastRoom = null;
     }
 
     public Room getCurrentRoom () {
@@ -150,12 +154,15 @@ public class Player {
         } else if (currentRoom.getEnemies().isEmpty()) {
             return AttackValue.NO_ENEMY;
         }
+
+        // virker ikke hvis der er flere enemy med samme navn
         for (Enemy enemy : currentRoom.getEnemies()) {
             if (enemy.getName().toLowerCase().equals(name)) {
                 enemy.takeDamage(currentWeapon.attack());
                 if (enemy.getHealth() <= 0) {
                     currentRoom.getItems().add(enemy.getWeapon());
                     currentRoom.getEnemies().remove(enemy);
+                    enemyInRoom = false;
                     return AttackValue.MONSTER_DEAD;
                 } else {
                     takeDamage(enemy.getDamage());
@@ -165,8 +172,7 @@ public class Player {
                     return AttackValue.SUCCESS;
                 }
             }
-        }
-        return AttackValue.NO_ENEMY;
+        } return AttackValue.NO_ENEMY;
     }
 
     // flytter våben fra currentWeapon og placerer i inventory
@@ -177,8 +183,7 @@ public class Player {
             inventory.add(currentWeapon);
             currentWeapon = null;
             return ReturnValue.OK;
-        }
-        return ReturnValue.NOT_FOUND;
+        } return ReturnValue.NOT_FOUND;
     }
 
     // Spørger om player er sikker på at man vil spise
@@ -268,42 +273,78 @@ public class Player {
         }
     }
 
+    public ReturnValue unlock() {
+        boolean hasKey = false;
+        for (Item i : getInventory()) {
+            if (i.getName().equals("Skeleton Key")) {
+                hasKey = true;
+            }
+            if (hasKey) {
+                if (currentRoom.getNorth() != null) {
+                    if (currentRoom.getNorth().getIsLocked()) {
+                        currentRoom.getNorth().unlock();
+                        return ReturnValue.OK;
+                    }
+                }
+                if (currentRoom.getEast() != null) {
+                    if (currentRoom.getEast().getIsLocked()) {
+                        currentRoom.getEast().unlock();
+                        return ReturnValue.OK;
+                    }
+                }
+                if (currentRoom.getSouth() != null) {
+                    if (currentRoom.getSouth().getIsLocked()) {
+                        currentRoom.getSouth().unlock();
+                        return ReturnValue.OK;
+                    }
+                }
+                if (currentRoom.getWest() != null) {
+                    if (currentRoom.getWest().getIsLocked()) {
+                        currentRoom.getWest().unlock();
+                        return ReturnValue.OK;
+                    }
+                }
+            }
+            return ReturnValue.NO_ROOM;
+        }
+        return ReturnValue.NO_KEY;
+    }
+
     // flytter currentRoom til room
-    public boolean moveToRoom(Room room) {
+    public ReturnValue moveToRoom(Room room) {
         if (room == null) {
             System.out.println("There is no room here.");
-            return false;
-        } else {
+            return ReturnValue.NO_ROOM;
+        } else if (lastRoom == room) {
+            lastRoom = currentRoom;
             currentRoom = room;
             // Sound.playRoomEntrySound();
             showDescription();
-            return true;
+            return ReturnValue.OK;
+        } else if (!currentRoom.getEnemies().isEmpty()) {
+            enemyInRoom = true;
+            System.out.println("An enemy is blocking your way!");
+            return ReturnValue.ENEMY_BLOCKING;
+
+        }else if (room.getIsLocked()) {
+            System.out.println("This room is locked.");
+            return ReturnValue.LOCKED;
+        } else {
+            lastRoom = currentRoom;
+            currentRoom = room;
+            showDescription();
+            return ReturnValue.OK;
         }
     }
 
     // super simpel move metode
-    public boolean move(String command) {
+    public void move(String command) {
         switch(command) {
-            case "go north", "north", "n" -> {
-                moveToRoom(currentRoom.getNorth());
-                return true;
-            }
-            case "go south", "south", "s" -> {
-                moveToRoom(currentRoom.getSouth());
-            return true;
-            }
-            case "go west", "west", "w" -> {
-                moveToRoom(currentRoom.getWest());
-                return true;
-            }
-            case "go east", "east", "e" -> {
-                moveToRoom(currentRoom.getEast());
-                return true;
-            }
-            default -> {
-                System.out.println("Invalid input. Try again.");
-                return false;
-            }
+            case "go north", "north", "n" -> moveToRoom(currentRoom.getNorth());
+            case "go south", "south", "s" -> moveToRoom(currentRoom.getSouth());
+            case "go west", "west", "w"   -> moveToRoom(currentRoom.getWest());
+            case "go east", "east", "e"   -> moveToRoom(currentRoom.getEast());
+            default -> System.out.println("Invalid input. Try again.");
         }
     }
 }

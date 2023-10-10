@@ -4,6 +4,9 @@ public enum ReturnValue {
     OK,
     FULL,
     POISON,
-    NOT_EQUIPPED,
     ALREADY_EQUIPPED,
+    ENEMY_BLOCKING,
+    NO_ROOM,
+    LOCKED,
+    NO_KEY,
 }
