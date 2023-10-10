@@ -1,5 +1,3 @@
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,6 +19,10 @@ public class Player {
         heldFood = null;
         heldLiquid = null;
         currentWeapon = null;
+    }
+
+    public Room getCurrentRoom () {
+        return currentRoom;
     }
 
     public int getHealth() {
@@ -68,7 +70,6 @@ public class Player {
         tempRoom = currentRoom;
         currentRoom = xyzzyRoom;
         xyzzyRoom = tempRoom;
-
         return "XYZZY!\n\033[3mYou are magically transported backwards through time, to a place that seems very familiar...\033[0m";
     }
 
@@ -122,18 +123,21 @@ public class Player {
     // TODO: fjern 'instanceof'
     // flytter våben fra inventory til currentWeapon
     public ReturnValue equipWeapon(String name) {
+        if (currentWeapon != null) {
+            return ReturnValue.ALREADY_EQUIPPED;
+        }
         for (Item i : getInventory()) {
             if (i.getName().equals(name) || i.getShortName().equals(name)) {
-                if (i instanceof Weapon) {
-                    currentWeapon = (Weapon) i;
+                if (i instanceof MeleeWeapon) {
+                    currentWeapon = (MeleeWeapon) i;
                     inventory.remove(i);
                     return ReturnValue.OK;
-                } else if (i instanceof RangedWeapon) {
+                } else {
                     currentWeapon = (RangedWeapon) i;
                     inventory.remove(i);
                     return ReturnValue.OK;
-                } else return ReturnValue.CANT;
-            }
+                }
+            } else return ReturnValue.CANT;
         }
         return ReturnValue.NOT_FOUND;
     }
@@ -141,15 +145,14 @@ public class Player {
     public AttackValue attack(String name) {
         if (currentWeapon == null) {
             return AttackValue.NO_EQUIP;
-        } else if (currentWeapon.attack() == 0) {
+        } else if (currentWeapon.getAmmo() == 0) {
             return AttackValue.NO_AMMO;
         } else if (currentRoom.getEnemies().isEmpty()) {
             return AttackValue.NO_ENEMY;
         }
         for (Enemy enemy : currentRoom.getEnemies()) {
-            if (enemy.getName().equals(name)) {
+            if (enemy.getName().toLowerCase().equals(name)) {
                 enemy.takeDamage(currentWeapon.attack());
-
                 if (enemy.getHealth() <= 0) {
                     currentRoom.getItems().add(enemy.getWeapon());
                     currentRoom.getEnemies().remove(enemy);
@@ -162,21 +165,20 @@ public class Player {
                     return AttackValue.SUCCESS;
                 }
             }
-
-
         }
         return AttackValue.NO_ENEMY;
-
     }
 
     // flytter våben fra currentWeapon og placerer i inventory
     public ReturnValue unequip(String name) {
         if (currentWeapon == null) {
             return ReturnValue.CANT;
+        } else if (currentWeapon.getName().toLowerCase().equals(name)) {
+            inventory.add(currentWeapon);
+            currentWeapon = null;
+            return ReturnValue.OK;
         }
-        inventory.add(currentWeapon);
-        currentWeapon = null;
-        return ReturnValue.OK;
+        return ReturnValue.NOT_FOUND;
     }
 
     // Spørger om player er sikker på at man vil spise
@@ -260,32 +262,48 @@ public class Player {
     // checker om du er i det sidste rum
     public void wincheck() {
         if (currentRoom.getName().equals("The Treasury:\n")) {
-            Sound.playVictorySound();
+            // Sound.playVictorySound();
             System.out.println("You win!");
             System.exit(0);
         }
     }
 
     // flytter currentRoom til room
-    private void moveToRoom(Room room) {
+    public boolean moveToRoom(Room room) {
         if (room == null) {
             System.out.println("There is no room here.");
+            return false;
         } else {
             currentRoom = room;
             // Sound.playRoomEntrySound();
             showDescription();
+            return true;
         }
     }
 
     // super simpel move metode
-    public void move(String command) {
+    public boolean move(String command) {
         switch(command) {
-            case "go north", "north", "n" -> moveToRoom(currentRoom.getNorth());
-            case "go south", "south", "s" -> moveToRoom(currentRoom.getSouth());
-            case "go west", "west", "w" -> moveToRoom(currentRoom.getWest());
-            case "go east", "east", "e" -> moveToRoom(currentRoom.getEast());
-            default -> System.out.println("Invalid input. Try again.");
+            case "go north", "north", "n" -> {
+                moveToRoom(currentRoom.getNorth());
+                return true;
+            }
+            case "go south", "south", "s" -> {
+                moveToRoom(currentRoom.getSouth());
+            return true;
+            }
+            case "go west", "west", "w" -> {
+                moveToRoom(currentRoom.getWest());
+                return true;
+            }
+            case "go east", "east", "e" -> {
+                moveToRoom(currentRoom.getEast());
+                return true;
+            }
+            default -> {
+                System.out.println("Invalid input. Try again.");
+                return false;
+            }
         }
     }
-
 }

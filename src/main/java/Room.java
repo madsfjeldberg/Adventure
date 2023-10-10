@@ -24,12 +24,6 @@ public class Room {
         this.enemies = new ArrayList<>();
     }
 
-    /*
-    public void addItem(String name, String shortName, String description) {
-        this.items.add(new Item(name, shortName, description));
-    }
-    */
-
     public void addFood(String name, String shortName, String description, int value) {
         this.items.add(new Food(name, shortName, description, value));
     }
@@ -39,15 +33,15 @@ public class Room {
     }
 
     public void addMeleeWeapon(String name, String shortName, String description, int value) {
-        this.items.add(new Weapon(name, shortName, description, value));
+        this.items.add(new MeleeWeapon(name, shortName, description, value));
     }
 
     public void addRangedWeapon(String name, String shortName, String description, int value, int ammo) {
         this.items.add(new RangedWeapon(name, shortName, description, value, ammo));
     }
 
-    public void addEnemy(int health, Weapon weapon, String name) {
-        this.enemies.add(new Enemy(health, weapon, name));
+    public void addEnemy(String name, int health, Weapon weapon) {
+        this.enemies.add(new Enemy(name, health, weapon));
     }
 
     public ArrayList<Enemy> getEnemies() {

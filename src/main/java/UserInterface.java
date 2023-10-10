@@ -41,7 +41,6 @@ public class UserInterface {
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
                 |___ |  |  \\/  |___    |  | |__/  \\/  |___ | \\|  |  |__| |  \\ |___ .\s""");
         welcomeMessage();
-        // adventure.startMenuSound();
         while (run) {
 
             System.out.print("\nWhat do you do? > ");
@@ -73,15 +72,17 @@ public class UserInterface {
                 }
                 case "equip" -> {
                     switch (adventure.equip(choice)) {
-                        case OK -> System.out.println("You have equipped the " + choice + ".");
-                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
-                        case CANT -> System.out.println("You can't equip " + choice + ".");
+                        case ALREADY_EQUIPPED -> System.out.println("You already have a weapon equipped.");
+                        case OK -> System.out.printf("You have equipped the %s.\n", choice);
+                        case NOT_FOUND -> System.out.printf("There's no %s in your inventory.\n", choice);
+                        case CANT -> System.out.printf("You can't equip %s.\n", choice);
                     }
                 }
                 case "unequip" -> {
                     switch(adventure.unequip(choice)) {
-                        case OK -> System.out.println("You have unequipped the " + choice + ".");
-                        case CANT -> System.out.println("You don't have the " + choice + " equipped.");
+                        case OK -> System.out.printf("You have unequipped the %s.\n", choice);
+                        case CANT -> System.out.println("You don't have a weapon equipped.");
+                        case NOT_FOUND -> System.out.printf("You don't have a %s equipped.\n", choice);
                     }
                 }
                 case "attack" -> {
@@ -90,18 +91,16 @@ public class UserInterface {
                         case NO_AMMO -> System.out.println("You don't have any ammo.");
                         case NO_ENEMY -> System.out.println("There's no enemy here.");
                         case MONSTER_DEAD -> {
-                            System.out.printf("You attack the monster for %d damage.", adventure.getWeaponDamage());
-                            System.out.printf("Monster loses", adventure.getWeaponDamage() + "health");
-                            System.out.println("The monster is dead!");
+                            System.out.printf("You attack the %s for %d damage.\n",choice, adventure.getWeaponDamage());
+                            System.out.printf("The %s loses %d health.\n",choice, adventure.getWeaponDamage());
+                            System.out.printf("The %s is dead!\n",choice);
                         }
                         case PLAYER_DEAD -> {
-                            System.out.printf("The monster attacks you for %d damage.", adventure.getEnemyDamage());
+                            System.out.printf("The %s attacks you for %d damage.\n",choice, adventure.getEnemyDamage());
                             System.out.println("You are dead!");
                             adventure.exit();
                         }
-                        case SUCCESS -> {
-                            System.out.printf("Your attack hits the monster for %d.\nThe monster hits you for %d damage.", adventure.getWeaponDamage(), adventure.getEnemyDamage());
-                        }
+                        case SUCCESS -> System.out.printf("Your attack hits the %s for %d.\nThe %s hits you for %d damage.",choice, adventure.getWeaponDamage(),choice, adventure.getEnemyDamage());
                     }
                 }
                 case "inventory", "i" -> {
@@ -191,8 +190,6 @@ public class UserInterface {
                 case "go" -> adventure.move(choice);
                 default -> adventure.move(command);
             }
-
-
             adventure.wincheck();
         }
     }

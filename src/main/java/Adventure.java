@@ -59,10 +59,12 @@ public class Adventure {
         return player.equipWeapon(command);
     }
 
+
     public ReturnValue unequip(String command) {
         return player.unequip(command);
     }
 
+    // angriber en given enemy
     public AttackValue attack(String command) {
         return player.attack(command);
     }
@@ -72,6 +74,7 @@ public class Adventure {
         return player.eatItem(command);
     }
 
+    // drikker et Liquid item
     public ReturnValue drink(String command) {
         return player.drinkItem(command);
     }

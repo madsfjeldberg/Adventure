@@ -37,22 +37,26 @@ public class Map {
 
         startingRoom = room1;
 
-        Weapon sword = new Weapon("Sword", "sword", "issa sword", 10);
+        Weapon sword = new Weapon("Short sword", "sword", "issa sword", 10);
+        Weapon axe = new Weapon("Axe", "axe", "issa axe", 25);
+        Weapon spear = new Weapon("Spear", "spear", "issa spear", 20);
 
         room1.addMeleeWeapon("Small dagger", "dagger", "Slightly rusted but still sharp.", 10);
         room1.addMeleeWeapon("Baseball bat", "bat", "rart at ha", 20);
         room1.addRangedWeapon("Bow", "bow", "Old but shoots straight.", 10, 2);
-        room4.addRangedWeapon("Enchanted book", "book", "Emanates with arcane magic.", 50, 1); // ranged
+        room4.addRangedWeapon("Enchanted book", "book", "Emanates with arcane magic.", 50, 1);
         room3.addMeleeWeapon("Rusty Hook", "hook", "Stained with old, dried blood.", 3);
         room4.addFood("Half-eaten apple", "apple", "please don't eat this.", -10);
         room6.addFood("Delicious lasagna", "lasagna", "Looks absolutely delicious.", 20);
-        room7.addRangedWeapon("Wand of Fire", "wand", "Probably gonna get you in trouble.", 20, 3); // ranged
+        room7.addRangedWeapon("Wand of Fire", "wand", "Probably gonna get you in trouble.", 20, 3);
         room1.addFood("Mom's sandwich", "sandwich", "You dropped this on the floor when you came in.\n...Probably still good though.", 5);
         room2.addFood("Rotten banana", "banana", "its turned black.", -10);
         room1.addLiquid("Clear Water", "water", "It's water.", 5);
-        room2.addLiquid("Purple Potion", "purple potion", "It's a mysterious liquid.", -20);
-        room2.addLiquid("Health Potion", "health potion", "It's a mysterious liquid.", 20);
-        room1.addEnemy(10, sword , "Goblin");
+        room2.addLiquid("Purple Poison", "poison", "It's a mysterious liquid.", -20);
+        room2.addLiquid("Health Potion", "potion", "It's a mysterious liquid.", 20);
+        room1.addEnemy("Goblin", 20, sword);
+        room8.addEnemy("Minotaur", 50, axe);
+        room4.addEnemy("Hollow Knight", 30, spear);
 
     }
 

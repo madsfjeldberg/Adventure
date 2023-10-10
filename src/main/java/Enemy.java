@@ -1,17 +1,14 @@
-import java.util.ArrayList;
+
 
 public class Enemy {
     private int health;
-    private Weapon weapon;
+    private final Weapon weapon;
     private final String name;
 
-
-
-    public Enemy(int health, Weapon weapon, String name) {
+    public Enemy(String name, int health, Weapon weapon) {
+        this.name = name;
         this.health = health;
         this.weapon = weapon;
-        this.name = name;
-
     }
     public String getName(){
         return name;

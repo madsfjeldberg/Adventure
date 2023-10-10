@@ -4,7 +4,7 @@ public class Weapon extends Item {
     public Weapon(String name, String shortName, String description, int value) {
         super(name, shortName, description, value);
         this.value = value;
-        this.ammo = 0;
+        this.ammo = 1;
     }
 
     public int getValue() {

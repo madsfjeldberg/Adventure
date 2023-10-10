@@ -4,5 +4,6 @@ public enum ReturnValue {
     OK,
     FULL,
     POISON,
-    NOT_EQUIPPED
+    NOT_EQUIPPED,
+    ALREADY_EQUIPPED,
 }
