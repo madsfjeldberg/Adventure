@@ -168,4 +168,13 @@ public class PlayerTest {
         player.takeItem("banan");
         assertEquals(ReturnValue.POISON, player.eatItem("banan"));
     }
+
+    @Test
+    public void full_check() {
+        player.setHealth(100);
+        player.takeItem("sandwich");
+        assertEquals(ReturnValue.FULL, player.eatItem("sandwich"));
+    }
+
+
 }
