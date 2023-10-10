@@ -60,14 +60,14 @@ public class UserInterface {
                 case "xyzzy" -> System.out.println(adventure.xyzzy());
                 case "take" -> {
                     switch (adventure.take(choice)) {
-                        case OK -> System.out.println("You have taken the " + choice + ".");
-                        case NOT_FOUND -> System.out.println("There's no " + choice + " here.");
+                        case OK -> System.out.printf("You have taken the %s.\n", choice);
+                        case NOT_FOUND -> System.out.printf("There's no %s here.\n", choice);
                     }
                 }
                 case "drop" -> {
                     switch (adventure.drop(choice)) {
-                        case OK -> System.out.println("You have dropped the " + choice + ".");
-                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+                        case OK -> System.out.printf("You have dropped the %s.\n", choice);
+                        case NOT_FOUND -> System.out.printf("There's no %s in your inventory.\n", choice);
                     }
                 }
                 case "equip" -> {
@@ -132,18 +132,18 @@ public class UserInterface {
                 case "eat" -> {
                     switch (adventure.eat(choice)) {
                         case OK -> {
-                            System.out.println("You have eaten the " + choice + ".");
-                            System.out.println("Your health is now " + adventure.health());
+                            System.out.printf("You have eaten the %s.\n", choice);
+                            System.out.printf("Your health is now %s.\n", adventure.health());
                         }
-                        case CANT -> System.out.println("You can't eat " + choice + ".");
+                        case CANT -> System.out.printf("You can't eat %s.\n", choice);
                         case FULL -> {
                             System.out.println("This would put you at max health.");
                             System.out.println("Are you sure you wanna eat it?");
                             String comm = input.nextLine().toLowerCase();
                             boolean check = adventure.fullCheck(comm);
                             if (check) {
-                                System.out.println("You have eaten the " + choice + ".");
-                                System.out.println("Your health is now " + adventure.health());
+                                System.out.printf("You have eaten the %s.\n", choice);
+                                System.out.printf("Your health is now %s.\n", adventure.health());
                             } else System.out.println("Wise choice.");
                         }
                         case POISON -> {
@@ -151,27 +151,27 @@ public class UserInterface {
                             System.out.println("Are you sure you want to eat it?");
                             String comm = input.nextLine().toLowerCase();
                             if (adventure.poisonCheck(comm)) {
-                                System.out.println("You have eaten the " + choice + ".");
-                                System.out.println("Your health is now " + adventure.health());
+                                System.out.printf("You have eaten the %s.\n", choice);
+                                System.out.printf("Your health is now %s.\n", adventure.health());
                             } else System.out.println("Wise choice.");
-                        } case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+                        } case NOT_FOUND -> System.out.printf("There's no %s in your inventory.", choice);
                     }
                 }
                 case "drink" -> {
                     switch (adventure.drink(choice)) {
                         case OK -> {
-                            System.out.println("You have drunk the " + choice + ".");
-                            System.out.println("Your health is now " + adventure.health());
+                            System.out.printf("You have drunk the %s.\n", choice);
+                            System.out.printf("Your health is now %s.\n", adventure.health());
                         }
-                        case CANT -> System.out.println("You can't drink " + choice + ".");
+                        case CANT -> System.out.printf("You can't drink %s.\n", choice);
                         case FULL -> {
                             System.out.println("This would put you at max health.");
                             System.out.println("Are you sure you wanna drink it?");
                             String comm = input.nextLine().toLowerCase();
                             boolean check = adventure.fullCheck(comm);
                             if (check) {
-                                System.out.println("You have drunk the " + choice + ".");
-                                System.out.println("Your health is now " + adventure.health());
+                                System.out.printf("You have drunk the %s.\n", choice);
+                                System.out.printf("Your health is now %s.\n", adventure.health());
                             } else System.out.println("Wise choice.");
                         }
                         case POISON -> {
@@ -179,11 +179,11 @@ public class UserInterface {
                             System.out.println("Are you sure you want to drink it?");
                             String comm = input.nextLine().toLowerCase();
                             if (adventure.poisonCheck(comm)) {
-                                System.out.println("You have drunk the " + choice + ".");
-                                System.out.println("Your health is now " + adventure.health());
+                                System.out.printf("You have drunk the %s.\n", choice);
+                                System.out.printf("Your health is now %s.\n", adventure.health());
                             } else System.out.println("Wise choice.");
                         }
-                        case NOT_FOUND -> System.out.println("There's no " + choice + " in your inventory.");
+                        case NOT_FOUND -> System.out.printf("There's no %s in your inventory.\n", choice);
                     }
 
                 }

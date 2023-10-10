@@ -159,6 +159,6 @@ public class PlayerTest {
     public void poison_check() {
         player.setHealth(90);
         player.takeItem("rotten banana");
-        assertEquals(ReturnValue.POISON, player.eatItem());
+        assertEquals(ReturnValue.POISON, player.eatItem("banana"));
     }
 }
