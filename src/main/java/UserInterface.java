@@ -196,7 +196,6 @@ public class UserInterface {
                         case NO_KEY -> System.out.println("You don't have a key.");
                     }
                 }
-
                 case "go" -> adventure.move(choice);
                 default -> adventure.move(command);
             }

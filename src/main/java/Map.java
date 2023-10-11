@@ -60,7 +60,6 @@ public class Map {
         room2.addEnemy("Goblin", 20, sword);
         room8.addEnemy("Minotaur", 50, axe);
         room4.addEnemy("Hollow Knight", 30, spear);
-
     }
 
     public Room getStartingRoom() {

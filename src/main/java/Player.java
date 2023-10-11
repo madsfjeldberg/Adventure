@@ -310,7 +310,6 @@ public class Player {
             enemyInRoom = true;
             System.out.println("An enemy is blocking your way!");
             return ReturnValue.ENEMY_BLOCKING;
-
         }else if (room.getIsLocked()) {
             System.out.println("This room is locked.");
             return ReturnValue.LOCKED;
@@ -322,13 +321,13 @@ public class Player {
         }
     }
 
-    // super simpel move metode
+    // move metode, sender videre til moveToRoom
     public void move(String command) {
         switch(command) {
-            case "go north", "north", "n" -> moveToRoom(currentRoom.getNorth());
-            case "go south", "south", "s" -> moveToRoom(currentRoom.getSouth());
-            case "go west", "west", "w"   -> moveToRoom(currentRoom.getWest());
-            case "go east", "east", "e"   -> moveToRoom(currentRoom.getEast());
+            case "north", "n" -> moveToRoom(currentRoom.getNorth());
+            case "south", "s" -> moveToRoom(currentRoom.getSouth());
+            case "west", "w"  -> moveToRoom(currentRoom.getWest());
+            case "east", "e"  -> moveToRoom(currentRoom.getEast());
             default -> System.out.println("Invalid input. Try again.");
         }
     }
