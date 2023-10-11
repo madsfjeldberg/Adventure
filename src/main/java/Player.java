@@ -273,6 +273,7 @@ public class Player {
         }
     }
 
+    // låser en dør op, hvis man har key og der er en låst dør.
     public ReturnValue unlock() {
         boolean hasKey = false;
         for (Item i : getInventory()) {
@@ -282,6 +283,7 @@ public class Player {
             }
         }
 
+        // sætter directions i en liste, så de kan itereres
         Room[] rooms = {currentRoom.getNorth(), currentRoom.getEast(), currentRoom.getSouth(), currentRoom.getWest()};
 
         for (Room room : rooms) {
