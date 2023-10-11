@@ -60,8 +60,8 @@ public class Adventure {
     }
 
 
-    public ReturnValue unequip(String command) {
-        return player.unequip(command);
+    public ReturnValue unequip() {
+        return player.unequip();
     }
 
     // angriber en given enemy
@@ -101,7 +101,7 @@ public class Adventure {
 
     // check to see if you won
     public void wincheck() {
-        player.wincheck();
+        player.winCheck();
     }
 
     // afslutter spillet

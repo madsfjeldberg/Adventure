@@ -93,19 +93,15 @@ public class Player {
         if (!currentRoom.getVisited()) {
             currentRoom.setVisited();
             return currentRoom.getName() + currentRoom.longdesc();
-            //System.out.print(currentRoom.getName());
-            //System.out.println(currentRoom.longdesc());
         } else return currentRoom.shortdesc() + "\n";
-            //System.out.println(currentRoom.shortdesc());
     }
 
     // forsøger at flytte et item til inventory
     public ReturnValue takeItem(String name) {
-        for (Object i : currentRoom.getItems()) {
-            Item item = (Item) i;
-            if (item.getName().equals(name) || item.getShortName().equals(name)) {
-                inventory.add(item);
-                currentRoom.getItems().remove(item);
+        for (Item i : currentRoom.getItems()) {
+            if (i.getName().equals(name) || i.getShortName().equals(name)) {
+                inventory.add(i);
+                currentRoom.getItems().remove(i);
                 return ReturnValue.OK;
             }
         }
@@ -124,20 +120,16 @@ public class Player {
         return ReturnValue.NOT_FOUND;
     }
 
-    // TODO: fjern 'instanceof'
     // flytter våben fra inventory til currentWeapon
     public ReturnValue equipWeapon(String name) {
         if (currentWeapon != null) {
-            return ReturnValue.ALREADY_EQUIPPED;
+            inventory.add(currentWeapon);
+            currentWeapon = null;
         }
         for (Item i : getInventory()) {
             if (i.getName().equals(name) || i.getShortName().equals(name)) {
-                if (i instanceof MeleeWeapon) {
-                    currentWeapon = (MeleeWeapon) i;
-                    inventory.remove(i);
-                    return ReturnValue.OK;
-                } else {
-                    currentWeapon = (RangedWeapon) i;
+                if (i instanceof Weapon) {
+                    currentWeapon = (Weapon) i;
                     inventory.remove(i);
                     return ReturnValue.OK;
                 }
@@ -174,15 +166,16 @@ public class Player {
         } return AttackValue.NO_ENEMY;
     }
 
+
     // flytter våben fra currentWeapon og placerer i inventory
-    public ReturnValue unequip(String name) {
+    public ReturnValue unequip() {
         if (currentWeapon == null) {
             return ReturnValue.CANT;
-        } else if (currentWeapon.getName().toLowerCase().equals(name)) {
+        } else {
             inventory.add(currentWeapon);
             currentWeapon = null;
             return ReturnValue.OK;
-        } return ReturnValue.NOT_FOUND;
+        }
     }
 
     // Spørger om player er sikker på at man vil spise
@@ -264,9 +257,9 @@ public class Player {
     }
 
     // checker om du er i det sidste rum
-    public void wincheck() {
+    public void winCheck() {
         if (currentRoom.getName().equals("The Treasury:\n")) {
-            // Sound.playVictorySound();
+            Sound.playVictorySound();
             System.out.println("You win!");
             System.exit(0);
         }
@@ -304,7 +297,7 @@ public class Player {
         } else if (lastRoom == room) {
             lastRoom = currentRoom;
             currentRoom = room;
-            // Sound.playRoomEntrySound();
+            Sound.playRoomEntrySound();
             System.out.println(showDescription());
             return ReturnValue.OK;
         } else if (!currentRoom.getEnemies().isEmpty()) {

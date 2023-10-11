@@ -18,11 +18,15 @@ public class UserInterface {
         System.out.println("─".repeat(100));
     }
 
+
+
     public void helpMessage() {
-        System.out.println("EXIT           Exits the game.");
+        System.out.println("GO             Followed by a direction, 's' 'east' 'n', to move around the rooms.");
         System.out.println("LOOK           Looks around the room.");
         System.out.println("TAKE           Tries to take an item from the room.");
         System.out.println("DROP           Tries to drop an item from your inventory.");
+        System.out.println("EAT            Eat an item from your inventory.");
+        System.out.println("DRINk          Drink an item from your inventory.");
         System.out.println("XYZZY          Magically transports you backwards through time.");
         System.out.println("HELP           Shows this message.");
         System.out.println("INVENTORY/I    Shows your inventory.");
@@ -30,14 +34,15 @@ public class UserInterface {
         System.out.println("UNEQUIP        Unequip an item from your inventory.");
         System.out.println("ATTACK         Attacks an enemy in the room.");
         System.out.println("UNLOCK         Unlocks a locked room.");
-        System.out.println("Move around the rooms by typing 'e' for east, 'n' for north, etc.");
+        System.out.println("EXIT           Exits the game.");
+        System.out.println();
         System.out.println("The objective is to find the treasury.");
     }
 
     // runs the game
     public void run() {
         boolean run = true;
-        // Sound.startMenuSound();
+        Sound.startMenuSound();
         System.out.println("""
                 ____ ____ _  _ ____    ____ ___  _  _ ____ _  _ ___ _  _ ____ ____   /
                 |    |__| |  | |___    |__| |  \\ |  | |___ |\\ |  |  |  | |__/ |___  /\s
@@ -81,10 +86,9 @@ public class UserInterface {
                     }
                 }
                 case "unequip" -> {
-                    switch(adventure.unequip(choice)) {
-                        case OK -> System.out.printf("You have unequipped the %s.\n", choice);
+                    switch(adventure.unequip()) {
+                        case OK -> System.out.println("You have unequipped your weapon.");
                         case CANT -> System.out.println("You don't have a weapon equipped.");
-                        case NOT_FOUND -> System.out.printf("You don't have a %s equipped.\n", choice);
                     }
                 }
                 case "attack" -> {

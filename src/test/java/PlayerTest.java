@@ -72,13 +72,14 @@ public class PlayerTest {
     public void unequip_weapon() {
         player.takeItem("weapon");
         player.equipWeapon("weapon");
-        assertEquals(ReturnValue.OK, player.unequip("weapon"));
+        assertEquals(ReturnValue.OK, player.unequip());
     }
 
     @Test
     public void unequip_not_weapon() {
         player.takeItem("weapon");
-        assertEquals(ReturnValue.CANT, player.unequip("dagger"));
+
+        assertEquals(ReturnValue.CANT, player.unequip());
     }
 
     @Test
