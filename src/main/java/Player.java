@@ -278,36 +278,19 @@ public class Player {
         for (Item i : getInventory()) {
             if (i.getName().equals("Skeleton Key")) {
                 hasKey = true;
+                break;
             }
-            if (hasKey) {
-                if (currentRoom.getNorth() != null) {
-                    if (currentRoom.getNorth().getIsLocked()) {
-                        currentRoom.getNorth().unlock();
-                        return ReturnValue.OK;
-                    }
-                }
-                if (currentRoom.getEast() != null) {
-                    if (currentRoom.getEast().getIsLocked()) {
-                        currentRoom.getEast().unlock();
-                        return ReturnValue.OK;
-                    }
-                }
-                if (currentRoom.getSouth() != null) {
-                    if (currentRoom.getSouth().getIsLocked()) {
-                        currentRoom.getSouth().unlock();
-                        return ReturnValue.OK;
-                    }
-                }
-                if (currentRoom.getWest() != null) {
-                    if (currentRoom.getWest().getIsLocked()) {
-                        currentRoom.getWest().unlock();
-                        return ReturnValue.OK;
-                    }
-                }
-            }
-            return ReturnValue.NO_ROOM;
         }
-        return ReturnValue.NO_KEY;
+
+        Room[] rooms = {currentRoom.getNorth(), currentRoom.getEast(), currentRoom.getSouth(), currentRoom.getWest()};
+
+        for (Room room : rooms) {
+            if (room!= null && room.getIsLocked()) {
+                room.unlock();
+                return ReturnValue.OK;
+            }
+        }
+        return ReturnValue.NO_ROOM;
     }
 
     // flytter currentRoom til room
