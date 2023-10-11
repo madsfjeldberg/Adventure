@@ -11,7 +11,6 @@ public class Player {
     private Item heldFood;
     private Liquid heldLiquid;
     private Weapon currentWeapon;
-    private boolean enemyInRoom;
 
     public Player(Room currentRoom) {
         this.xyzzyRoom = currentRoom;
@@ -21,7 +20,6 @@ public class Player {
         heldFood = null;
         heldLiquid = null;
         currentWeapon = null;
-        enemyInRoom = false;
         this.lastRoom = null;
     }
 
@@ -91,12 +89,14 @@ public class Player {
 
     // viser lang beskrivelse, hvis rummet ikke er blevet besøgt,
     // kort beskrivelse hvis det allerede er blevet besøgt
-    public void showDescription() {
+    public String showDescription() {
         if (!currentRoom.getVisited()) {
             currentRoom.setVisited();
-            System.out.print(currentRoom.getName());
-            System.out.println(currentRoom.longdesc());
-        } else System.out.println(currentRoom.shortdesc());
+            return currentRoom.getName() + currentRoom.longdesc();
+            //System.out.print(currentRoom.getName());
+            //System.out.println(currentRoom.longdesc());
+        } else return currentRoom.shortdesc() + "\n";
+            //System.out.println(currentRoom.shortdesc());
     }
 
     // forsøger at flytte et item til inventory
@@ -162,7 +162,6 @@ public class Player {
                 if (enemy.getHealth() <= 0) {
                     currentRoom.getItems().add(enemy.getWeapon());
                     currentRoom.getEnemies().remove(enemy);
-                    enemyInRoom = false;
                     return AttackValue.MONSTER_DEAD;
                 } else {
                     takeDamage(enemy.getDamage());
@@ -282,14 +281,16 @@ public class Player {
                 break;
             }
         }
-
         // sætter directions i en liste, så de kan itereres
         Room[] rooms = {currentRoom.getNorth(), currentRoom.getEast(), currentRoom.getSouth(), currentRoom.getWest()};
 
         for (Room room : rooms) {
             if (room!= null && room.getIsLocked()) {
-                room.unlock();
-                return ReturnValue.OK;
+                if (hasKey) {
+                    room.unlock();
+                    return ReturnValue.OK;
+                }
+                return ReturnValue.NO_KEY;
             }
         }
         return ReturnValue.NO_ROOM;
@@ -304,10 +305,9 @@ public class Player {
             lastRoom = currentRoom;
             currentRoom = room;
             // Sound.playRoomEntrySound();
-            showDescription();
+            System.out.println(showDescription());
             return ReturnValue.OK;
         } else if (!currentRoom.getEnemies().isEmpty()) {
-            enemyInRoom = true;
             System.out.println("An enemy is blocking your way!");
             return ReturnValue.ENEMY_BLOCKING;
         }else if (room.getIsLocked()) {
@@ -316,7 +316,7 @@ public class Player {
         } else {
             lastRoom = currentRoom;
             currentRoom = room;
-            showDescription();
+            System.out.println(showDescription());
             return ReturnValue.OK;
         }
     }
