@@ -30,6 +30,6 @@ public class Enemy {
     }
 
     public String toString() {
-        return "Enemy: " + name + " \nHealth: " + health;
+        return "Name: " + name + " \nHealth: " + health + "\nWeapon: " + weapon.getName() + "\nAttack Power: " + weapon.getValue();
     }
 }

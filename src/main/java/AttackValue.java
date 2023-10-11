@@ -4,5 +4,6 @@ public enum AttackValue {
     NO_ENEMY,
     SUCCESS,
     MONSTER_DEAD,
-    PLAYER_DEAD
+    PLAYER_DEAD,
+    NOT_FOUND,
 }

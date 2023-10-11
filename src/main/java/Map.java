@@ -37,9 +37,9 @@ public class Map {
 
         startingRoom = room1;
 
-        Weapon sword = new Weapon("Short sword", "sword", "issa sword", 10);
-        Weapon axe = new Weapon("Axe", "axe", "issa axe", 25);
-        Weapon spear = new Weapon("Spear", "spear", "issa spear", 20);
+        Weapon sword = new MeleeWeapon("Short sword", "sword", "issa sword", 10);
+        Weapon axe = new MeleeWeapon("Axe", "axe", "issa axe", 25);
+        Weapon spear = new MeleeWeapon("Spear", "spear", "issa spear", 20);
 
         room5.lock();
 

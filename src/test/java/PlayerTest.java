@@ -13,7 +13,6 @@ public class PlayerTest {
         player = new Player(map.getStartingRoom());
         player.getCurrentRoom().addMeleeWeapon("Weapon", "weapon", "issa weapon", 10);
         player.getCurrentRoom().addRangedWeapon("Bow_no_ammo", "bow_no_ammo", "test", 10, 0);
-        Weapon test = new Weapon("Test", "test", "test", 10);
         player.getCurrentRoom().addFood("Banan", "banan", "banan", -10);
     }
 
@@ -119,7 +118,7 @@ public class PlayerTest {
     public void attack_nothing() {
         player.takeItem("weapon");
         player.equipWeapon("weapon");
-        assertEquals(AttackValue.NO_ENEMY, player.attack("weapon"));
+        assertEquals(AttackValue.NOT_FOUND, player.attack("weapon"));
     }
 
     @Test
@@ -176,5 +175,19 @@ public class PlayerTest {
         assertEquals(ReturnValue.FULL, player.eatItem("sandwich"));
     }
 
+    @Test
+    public void room_is_locked() {
+        player.getCurrentRoom().getEast().lock();
+        assertEquals(player.moveToRoom(player.getCurrentRoom().getEast()), ReturnValue.LOCKED);
+    }
+
+    @Test
+    public void unlock_room() {
+        player.getCurrentRoom().getEast().lock();
+        player.getCurrentRoom().addKeyItem("Skeleton Key", "key", "key", 1);
+        player.takeItem("key");
+        player.unlock();
+        assertEquals(player.moveToRoom(player.getCurrentRoom().getEast()), ReturnValue.OK);
+    }
 
 }

@@ -10,6 +10,6 @@ public class MeleeWeapon extends Weapon {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nDescription: \"" + description + "\nAttack power: " + value + "\n";
+        return "Name: " + name + "\nDescription: \"" + description + "\"\nAttack Power: " + value + "\n";
     }
 }

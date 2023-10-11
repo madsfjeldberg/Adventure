@@ -27,9 +27,11 @@ public class UserInterface {
         System.out.println("HELP           Shows this message.");
         System.out.println("INVENTORY/I    Shows your inventory.");
         System.out.println("EQUIP          Equips an item from your inventory.");
-        System.out.println("UNEQUIP        Unequips an item from your inventory.");
-        System.out.println("ATTACK         attacks an enemy in the room.");
+        System.out.println("UNEQUIP        Unequip an item from your inventory.");
+        System.out.println("ATTACK         Attacks an enemy in the room.");
+        System.out.println("UNLOCK         Unlocks a locked room.");
         System.out.println("Move around the rooms by typing 'e' for east, 'n' for north, etc.");
+        System.out.println("The objective is to find the treasury.");
     }
 
     // runs the game
@@ -89,7 +91,8 @@ public class UserInterface {
                     switch (adventure.attack(choice)) {
                         case NO_EQUIP -> System.out.println("You don't have a weapon equipped.");
                         case NO_AMMO -> System.out.println("You don't have any ammo.");
-                        case NO_ENEMY -> System.out.println("There's no enemy here.");
+                        case NOT_FOUND -> System.out.println("There's no enemy here.");
+                        case NO_ENEMY -> System.out.printf("There's no %s here.", choice);
                         case MONSTER_DEAD -> {
                             System.out.printf("You attack the %s for %d damage.\n",choice, adventure.getWeaponDamage());
                             System.out.printf("You have defeated the %s!\n",choice);

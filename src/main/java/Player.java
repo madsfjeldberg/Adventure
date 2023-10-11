@@ -152,7 +152,7 @@ public class Player {
         } else if (currentWeapon.getAmmo() == 0) {
             return AttackValue.NO_AMMO;
         } else if (currentRoom.getEnemies().isEmpty()) {
-            return AttackValue.NO_ENEMY;
+            return AttackValue.NOT_FOUND;
         }
 
         // virker ikke hvis der er flere enemy med samme navn

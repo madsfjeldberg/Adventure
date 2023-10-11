@@ -26,7 +26,7 @@ public class Weapon extends Item {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nDescription: \"" + description + "\"\nValue: " + value + "\n";
+        return "Name: " + name + "\nDescription: \"" + description + "\"\nAttack Power: " + value + "\n";
     }
 
 
