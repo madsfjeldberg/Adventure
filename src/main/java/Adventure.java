@@ -59,6 +59,9 @@ public class Adventure {
         return player.equipWeapon(command);
     }
 
+    public String getEnemyName() {
+        return player.getEnemyName();
+    }
 
     public ReturnValue unequip() {
         return player.unequip();

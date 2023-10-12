@@ -23,6 +23,12 @@ public class Player {
         this.lastRoom = null;
     }
 
+    public String getEnemyName() {
+        if (currentRoom.getEnemies().isEmpty()) {
+            return "";
+        } else return currentRoom.getEnemies().get(0).getName().toLowerCase();
+    }
+
     public Room getCurrentRoom () {
         return currentRoom;
     }
@@ -81,7 +87,7 @@ public class Player {
             return (currentRoom.longdesc() + "\nITEMS:\n" + currentRoom.showItems() + "\n" + currentRoom.showEnemies());
         } else if (!currentRoom.getEnemies().isEmpty()) {
             System.out.println(currentRoom.showEnemies());
-        } else if (currentRoom.getItems().isEmpty()) {
+        } else {
             return (currentRoom.longdesc() + "\nThere are no items here.");
         }
         return "";
@@ -145,8 +151,10 @@ public class Player {
             return AttackValue.NO_AMMO;
         } else if (currentRoom.getEnemies().isEmpty()) {
             return AttackValue.NOT_FOUND;
-        }
 
+        } else if (currentRoom.getEnemies().size() == 1) {
+            name = currentRoom.getEnemies().get(0).getName().toLowerCase();
+        }
         // virker ikke hvis der er flere enemy med samme navn
         for (Enemy enemy : currentRoom.getEnemies()) {
             if (enemy.getName().toLowerCase().equals(name)) {

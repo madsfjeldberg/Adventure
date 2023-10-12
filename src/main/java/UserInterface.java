@@ -91,7 +91,10 @@ public class UserInterface {
                         case CANT -> System.out.println("You don't have a weapon equipped.");
                     }
                 }
-                case "attack" -> {
+                case "attack", "a" -> {
+                    if (choice.isEmpty()) {
+                        choice = adventure.getEnemyName();
+                    }
                     switch (adventure.attack(choice)) {
                         case NO_EQUIP -> System.out.println("You don't have a weapon equipped.");
                         case NO_AMMO -> System.out.println("You don't have any ammo.");
@@ -106,7 +109,8 @@ public class UserInterface {
                             System.out.println("You are dead!");
                             adventure.exit();
                         }
-                        case SUCCESS -> System.out.printf("You attack the %s for %d damage.\nThe %s hits you for %d damage.",choice, adventure.getWeaponDamage(),choice, adventure.getEnemyDamage());
+                        case SUCCESS -> System.out.printf("You attack the %s for %d damage.\nThe %s hits you for %d damage.",
+                                                          choice, adventure.getWeaponDamage(),choice, adventure.getEnemyDamage());
                     }
                 }
                 case "inventory", "i" -> {
