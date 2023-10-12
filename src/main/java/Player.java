@@ -24,7 +24,7 @@ public class Player {
     }
 
     public String getEnemyName() {
-        if (currentRoom.getEnemies().isEmpty()) {
+        if (currentRoom.getEnemies().isEmpty() || currentRoom.getEnemies().size() > 1) {
             return "";
         } else return currentRoom.getEnemies().get(0).getName().toLowerCase();
     }

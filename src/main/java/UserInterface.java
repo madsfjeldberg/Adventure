@@ -56,6 +56,7 @@ public class UserInterface {
             String command = inputSplit[0];
             String choice = "";
             if (inputSplit.length > 1) choice = inputSplit[1];
+            if (inputSplit.length == 3) choice = inputSplit[1] + " " + inputSplit[2];
 
             switch (command) {
                 case "exit" -> {
@@ -99,7 +100,7 @@ public class UserInterface {
                         case NO_EQUIP -> System.out.println("You don't have a weapon equipped.");
                         case NO_AMMO -> System.out.println("You don't have any ammo.");
                         case NOT_FOUND -> System.out.println("There's no enemy here.");
-                        case NO_ENEMY -> System.out.printf("There's no %s here.", choice);
+                        case NO_ENEMY -> System.out.println("You have to choose an enemy to attack.");
                         case MONSTER_DEAD -> {
                             System.out.printf("You attack the %s for %d damage.\n",choice, adventure.getWeaponDamage());
                             System.out.printf("You have defeated the %s!\n",choice);
