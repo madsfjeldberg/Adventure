@@ -1,6 +1,4 @@
-public class Liquid extends Item {
-
-
+public class Liquid extends Food {
 
     public Liquid(String name, String shortName, String description, int value) {
         super(name, shortName, description, value);
@@ -11,8 +9,4 @@ public class Liquid extends Item {
         return super.getValue();
     }
 
-    @Override
-    public String toString() {
-        return "Name: " + name + "\nDescription: \"" + description + "\"\nValue: " + value + "\n";
-    }
 }

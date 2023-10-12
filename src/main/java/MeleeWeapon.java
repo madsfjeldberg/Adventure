@@ -8,8 +8,4 @@ public class MeleeWeapon extends Weapon {
         return super.getValue();
     }
 
-    @Override
-    public String toString() {
-        return "Name: " + name + "\nDescription: \"" + description + "\"\nAttack Power: " + value + "\n";
-    }
 }

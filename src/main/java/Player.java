@@ -81,10 +81,10 @@ public class Player {
             return (currentRoom.longdesc() + "\nITEMS:\n" + currentRoom.showItems() + "\n" + currentRoom.showEnemies());
         } else if (!currentRoom.getEnemies().isEmpty()) {
             System.out.println(currentRoom.showEnemies());
-        } else {
+        } else if (currentRoom.getItems().isEmpty()) {
             return (currentRoom.longdesc() + "\nThere are no items here.");
         }
-        return "There are no monsters or items here.";
+        return "";
     }
 
     // viser lang beskrivelse, hvis rummet ikke er blevet besøgt,

@@ -63,10 +63,6 @@ public class Room {
         this.enemies.add(new Enemy(name, health, weapon));
     }
 
-    public void addEnemyTest(Enemy enemy) {
-        this.enemies.add(enemy);
-    }
-
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
     }
