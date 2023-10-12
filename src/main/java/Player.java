@@ -152,6 +152,7 @@ public class Player {
         } else if (currentRoom.getEnemies().isEmpty()) {
             return AttackValue.NOT_FOUND;
 
+            // checker om der kun er en enemy, så man bare kan skrive 'attack'
         } else if (currentRoom.getEnemies().size() == 1) {
             name = currentRoom.getEnemies().get(0).getName().toLowerCase();
         }
